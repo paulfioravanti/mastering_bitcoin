@@ -43,8 +43,8 @@ defmodule MasteringBitcoin.RPCTransaction do
     |> Map.get("vout")
     |> Enum.each(fn(output) ->
          "(#{output["scriptPubKey"]["addresses"]}, #{output["value"]})"
-        |> IO.puts()
-      end)
+         |> IO.puts()
+       end)
   end
   defp decoded_transaction(%{"error" => reason}), do: {:error, reason}
   defp decoded_transaction(error), do: error
