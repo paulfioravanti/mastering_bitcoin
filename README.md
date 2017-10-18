@@ -94,6 +94,18 @@ curl --user <user>:<password> --data-binary '{"jsonrpc":"1.0","method":"getinfo"
 Replace `<user>` and `<password>` with the relevant values from your
 `~/Library/Application\ Support/Bitcoin/bitcoin.conf` file.
 
+### Example code config
+
+Add your Bitcoin node's username and password to the config for the Elixir
+example code in the same way as the `curl` command above:
+
+```
+$ cp config/config.example.exs config/config.exs
+```
+
+Then, edit the `bitcoin_url: "http://<user>:<password>@localhost:8332"` line
+of the `config.exs` file and substitute out the user and password information.
+
 ## Helpful Resources
 
 - [Controlling a Bitcode Node in Elixir](http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/)
