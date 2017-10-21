@@ -18,7 +18,7 @@ $ cd mastering_bitcoin
 $ mix deps.get
 ```
 
-The books says that:
+The book says that:
 
 > If you're reading this book and interested in developing bitcoin software,
 > you should be running your own node.
@@ -72,9 +72,10 @@ $ brew cask install bitcoin-core
 ```
 
 Once installed, use your favourite text editor to open up the configuration file
-located at `~/Library/Application\ Support/Bitcoin/bitcoin.conf` to
-configure how much of your computer's resources the node should use
-(shown in [Example 3-1][Mastering Bitcoin 2nd Edition Example 3-1] and
+located at <br />
+`~/Library/Application\ Support/Bitcoin/bitcoin.conf` to configure how much of
+your computer's resources the node should use (shown in
+[Example 3-1][Mastering Bitcoin 2nd Edition Example 3-1] and
 [Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2] in the book).
 
 **NOTE**: even if you use the resource-constrained config in
@@ -121,9 +122,11 @@ of the `config.exs` file and substitute out the user and password information.
 Start the Bitcoin service, open up an `iex` console, and run the functions.
 For example:
 
-```
+```shell
 $ brew services start bitcoin
 $ iex -S mix
+```
+```elixir
 iex(1)> MasteringBitcoin.Client.getinfo
 {:ok,
  %{"balance" => 0.0, "blocks" => 375964, "connections" => 8,
