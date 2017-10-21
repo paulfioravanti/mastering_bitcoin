@@ -6,17 +6,17 @@ defmodule MasteringBitcoin.RPCBlock do
   alias MasteringBitcoin.Client, as: RawProxy
 
   def run do
-    # The block height where Alice's transaction was recorded.
-    "277316"
-    # Get the block hash of block with height 277316
-    |> get_blockhash()
-    |> get_transactions()
-    |> calculate_block_value()
-    |> (fn(block_value) -> "(Total value in block: #{block_value})" end).()
-    |> IO.puts()
+    block_value =
+      # The block height where Alice's transaction was recorded.
+      "277316"
+      |> get_blockhash()
+      |> get_transactions()
+      |> calculate_block_value()
+    IO.puts "(Total value in block: #{block_value})"
   end
 
   defp get_blockhash(blockheight) do
+    # Get the block hash of block with height 277316
     case RawProxy.getblockhash(blockheight) do
       {:ok, blockhash} ->
         blockhash
@@ -58,30 +58,30 @@ defmodule MasteringBitcoin.RPCBlock do
   end
 
   defp calculate_block_value(transactions) do
-    transactions
     # Iterate through each transaction ID in the block
-    |> Enum.reduce(0, fn(txid, block_value) ->
-         # Retrieve the raw transaction by ID
-         with {:ok, raw_tx} <- RawProxy.getrawtransaction(txid),
-              # Decode the transaction
-              {:ok, decoded_tx} <- RawProxy.decoderawtransaction(raw_tx) do
-           # Iterate through each output in the transaction
-           decoded_tx
-           |> Map.get("vout")
-           |> Enum.reduce(0, fn(output, tx_value) ->
-                # Add up the value of each output
-                output
-                |> Map.get("value")
-                |> Kernel.+(tx_value)
-              end)
-           |> Kernel.+(block_value)
-         else
-           {:error, reason} ->
-             reason
-             |> Map.get("message")
-             |> (fn(reason) -> "Couldn't decode transaction: #{reason}" end).()
-             |> raise
-         end
-       end)
+    Enum.reduce(transactions, 0, fn(txid, block_value) ->
+      # Add the value of this transaction to the total
+      sum_transaction_values(txid) + block_value
+    end)
+  end
+
+  defp sum_transaction_values(txid) do
+    # Retrieve the raw transaction by ID
+    with {:ok, raw_tx} <- RawProxy.getrawtransaction(txid),
+         # Decode the transaction
+         {:ok, decoded_tx} <- RawProxy.decoderawtransaction(raw_tx) do
+      decoded_tx
+      |> Map.get("vout")
+      # Iterate through each output in the transaction
+      |> Stream.map(&(Map.get(&1, "value")))
+      # Add up the value of each output
+      |> Enum.sum()
+    else
+      {:error, reason} ->
+        reason
+        |> Map.get("message")
+        |> (fn(reason) -> "Couldn't decode transaction: #{reason}" end).()
+        |> raise
+    end
   end
 end
