@@ -1,8 +1,8 @@
 # Mastering Bitcoin
 
 This repository contains example code related to the book
-[Mastering Bitcoin 2nd Edition](https://www.amazon.com/Mastering-Bitcoin-Programming-Open-Blockchain/dp/1491954388)
-([book Github repo](https://github.com/bitcoinbook/bitcoinbook)).
+[Mastering Bitcoin 2nd Edition][]
+([book Github repo][Mastering Bitcoin 2nd Edition Github repo].
 
 The code examples in the book are all in Python and C++, so I decided to port
 them to [Elixir](https://github.com/elixir-lang/elixir). Since Elixir can't use
@@ -27,8 +27,10 @@ The books says that:
 So, that means running a full Bitcoin node on your laptop, and needing to
 download the entire blockchain (> 100GB worth of transactions) on to your
 computer. The book gives an example node configuration file for a
-resource-constrained system (Example 3-2), and that's what I used to not
-completely tie up my network and kill my bandwidth limits with Bitcoin traffic.
+resource-constrained system
+([Example 3-2](https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#constrained_resources)),
+and that's what I used to not completely tie up my network and kill my bandwidth
+limits with Bitcoin traffic.
 
 Some of the code examples in the book use very specific blockchain transactions
 which you may not have on your local Bitcoin node. Rather than wait however many
@@ -137,3 +139,6 @@ iex(2)> MasteringBitcoin.RPCExample.run
 ## Helpful Resources
 
 - [Controlling a Bitcode Node in Elixir](http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/)
+
+[Mastering Bitcoin 2nd Edition]: https://www.amazon.com/Mastering-Bitcoin-Programming-Open-Blockchain/dp/1491954388
+[Mastering Bitcoin 2nd Edition Github repo]: https://github.com/bitcoinbook/bitcoinbook
