@@ -1,4 +1,10 @@
 defmodule MasteringBitcoin.Client do
+  @moduledoc """
+  Client module to interface with a Bitcoin full node.
+  """
+
+  @bitcoin_url Application.get_env(:mastering_bitcoin, :bitcoin_url)
+
   def decoderawtransaction(raw_tx) do
     bitcoin_rpc("decoderawtransaction", [raw_tx])
   end
@@ -25,7 +31,7 @@ defmodule MasteringBitcoin.Client do
 
   # Create a connection to local Bitcoin Core node
   defp bitcoin_rpc(method, params \\ []) do
-    with url <- Application.get_env(:mastering_bitcoin, :bitcoin_url),
+    with url <- @bitcoin_url
          command <- %{jsonrpc: "1.0", method: method, params: params},
          {:ok, body} <- Poison.encode(command),
          {:ok, response} <- HTTPoison.post(url, body),
