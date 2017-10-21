@@ -35,10 +35,8 @@ defmodule MasteringBitcoin.RPCBlock do
       blockhash
     else
       {:error, reason} ->
-        reason
-        |> Map.get("reason")
-        |> (fn(reason) -> "Couldn't get a blockhash: #{reason}" end).()
-        |> raise
+        IO.puts "Couldn't get a blockhash"
+        raise reason
     end
   end
 
@@ -50,10 +48,8 @@ defmodule MasteringBitcoin.RPCBlock do
       transactions
     else
       {:error, reason} ->
-        reason
-        |> Map.get("message")
-        |> (fn(reason) -> "Couldn't get transactions: #{reason}" end).()
-        |> raise
+        IO.puts "Couldn't get transactions"
+        raise reason
     end
   end
 
@@ -78,10 +74,8 @@ defmodule MasteringBitcoin.RPCBlock do
       |> Enum.sum()
     else
       {:error, reason} ->
-        reason
-        |> Map.get("message")
-        |> (fn(reason) -> "Couldn't decode transaction: #{reason}" end).()
-        |> raise
+        IO.puts "Couldn't decode transaction"
+        raise reason
     end
   end
 end
