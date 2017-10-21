@@ -3,11 +3,11 @@ defmodule MasteringBitcoin.RPCExample do
   rpc_example.py example
   """
 
-  alias MasteringBitcoin.Client
+  alias MasteringBitcoin.Client, as: RawProxy
 
   def run do
     # Run the getinfo command, store the resulting data in info
-    case Client.getinfo do
+    case RawProxy.getinfo do
       {:ok, info} ->
         info
         # Retrieve the 'blocks' element from the info
