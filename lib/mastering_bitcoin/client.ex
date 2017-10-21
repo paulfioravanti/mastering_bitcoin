@@ -31,7 +31,7 @@ defmodule MasteringBitcoin.Client do
 
   # Create a connection to local Bitcoin Core node
   defp bitcoin_rpc(method, params \\ []) do
-    with url <- @bitcoin_url
+    with url <- @bitcoin_url,
          command <- %{jsonrpc: "1.0", method: method, params: params},
          {:ok, body} <- Poison.encode(command),
          {:ok, response} <- HTTPoison.post(url, body),
