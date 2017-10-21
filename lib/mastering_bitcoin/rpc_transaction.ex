@@ -12,33 +12,37 @@ defmodule MasteringBitcoin.RPCTransaction do
     |> get_or_generate_raw_transaction()
     # Decode the transaction hex into a JSON object
     |> RawProxy.decoderawtransaction()
-    |> decoded_transaction()
+    |> extract_values()
   end
 
   defp get_or_generate_raw_transaction(txid) do
     case RawProxy.getrawtransaction(txid) do
       {:ok, raw_tx} ->
         raw_tx
-      # NOTE: If you are querying a full node on your local machine that doesn't
-      # have the entire blockchain on it, then you may not have Alice's txid,
-      # so in that case, grab a transaction from the latest block that you have
-      # in your node.
       {:error, _reason} ->
-        with {:ok, block_count} <- RawProxy.getblockcount,
-             {:ok, header} <- RawProxy.getblockhash(block_count),
-             {:ok, block} <- RawProxy.getblock(header),
-             {:ok, tx} <- Map.fetch(block, "tx"),
-             {:ok, txid} <- Enum.fetch(tx, 0),
-             {:ok, raw_tx} <- RawProxy.getrawtransaction(txid) do
-          raw_tx
-        else
-          {:error, reason} ->
-            raise "Couldn't generate a raw transaction: #{reason}"
-        end
+        get_raw_transaction_from_latest_block()
     end
   end
 
-  defp decoded_transaction({:ok, decoded_tx}) do
+  # NOTE: If you are querying a full node on your local machine that doesn't
+  # have the entire blockchain on it, then you may not have Alice's txid,
+  # so in that case, grab a transaction from the latest block that you have
+  # in your node.
+  defp get_raw_transaction_from_latest_block do
+    with {:ok, block_count} <- RawProxy.getblockcount,
+         {:ok, header} <- RawProxy.getblockhash(block_count),
+         {:ok, block} <- RawProxy.getblock(header),
+         {:ok, tx} <- Map.fetch(block, "tx"),
+         {:ok, txid} <- Enum.fetch(tx, 0),
+         {:ok, raw_tx} <- RawProxy.getrawtransaction(txid) do
+      raw_tx
+    else
+      {:error, reason} ->
+        raise "Couldn't get a raw transaction: #{reason}"
+    end
+  end
+
+  defp extract_values({:ok, decoded_tx}) do
     decoded_tx
     |> Map.get("vout")
     |> Enum.each(fn(output) ->
@@ -46,6 +50,5 @@ defmodule MasteringBitcoin.RPCTransaction do
          |> IO.puts()
        end)
   end
-  defp decoded_transaction(%{"error" => reason}), do: {:error, reason}
-  defp decoded_transaction(error), do: error
+  defp extract_values(error), do: error
 end

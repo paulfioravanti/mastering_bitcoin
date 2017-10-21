@@ -15,8 +15,6 @@ defmodule MasteringBitcoin.RPCExample do
         |> IO.puts()
       {:error, error} ->
         IO.puts(error)
-      error ->
-        IO.puts(error)
     end
   end
 end
