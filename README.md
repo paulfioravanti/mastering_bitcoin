@@ -79,10 +79,15 @@ your computer's resources the node should use (shown in
 [Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2] in the book).
 
 **NOTE**: even if you use the resource-constrained config in
-[Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2], you _must_ add the
-`txindex=1` line from [Example 3-1][Mastering Bitcoin 2nd Edition Example 3-1]
-to it otherwise you won't be able to make queries on transaction (`tx`) IDs via
-the Bitcoin API (which is something the exercises in the book do).
+[Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2], you _must_ do the
+following:
+
+- add the `txindex=1` line from
+  [Example 3-1][Mastering Bitcoin 2nd Edition Example 3-1]
+  to it otherwise you won't be able to make queries on transaction (`tx`)
+  IDs via the Bitcoin API (which is something the exercises in the book do).
+- remove the `prune=5000` line since Prune Mode is incompatible with `txindex`.
+  Attempting to use Prune Mode with `txindex` will result in an error.
 
 ### Test local Bitcoin node
 
