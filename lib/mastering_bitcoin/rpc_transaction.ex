@@ -9,13 +9,13 @@ defmodule MasteringBitcoin.RPCTransaction do
     # Alice's transaction ID
     "0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2"
     # First, retrieve the raw transaction in hex
-    |> get_or_generate_raw_transaction()
+    |> get_raw_transaction()
     # Decode the transaction hex into a JSON object
     |> RawProxy.decoderawtransaction()
     |> extract_values()
   end
 
-  defp get_or_generate_raw_transaction(txid) do
+  defp get_raw_transaction(txid) do
     case RawProxy.getrawtransaction(txid) do
       {:ok, raw_tx} ->
         raw_tx
@@ -29,9 +29,9 @@ defmodule MasteringBitcoin.RPCTransaction do
   # so in that case, grab a transaction from the latest block that you have
   # in your node.
   defp get_raw_transaction_from_latest_block do
-    with {:ok, block_count} <- RawProxy.getblockcount,
-         {:ok, header} <- RawProxy.getblockhash(block_count),
-         {:ok, block} <- RawProxy.getblock(header),
+    with {:ok, blockheight} <- RawProxy.getblockcount,
+         {:ok, blockhash} <- RawProxy.getblockhash(blockheight),
+         {:ok, block} <- RawProxy.getblock(blockhash),
          {:ok, tx} <- Map.fetch(block, "tx"),
          {:ok, txid} <- Enum.fetch(tx, 0),
          {:ok, raw_tx} <- RawProxy.getrawtransaction(txid) do
