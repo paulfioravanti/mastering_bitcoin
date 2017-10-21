@@ -75,12 +75,13 @@ Once installed, use your favourite text editor to open up the configuration file
 located at `~/Library/Application\ Support/Bitcoin/bitcoin.conf` to
 configure how much of your computer's resources the node should use
 (shown in [Example 3-1][Mastering Bitcoin 2nd Edition Example 3-1] and
-([Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2] in the book).
+[Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2] in the book).
 
-**NOTE**: even if you use the resource-constrained config in Example 3-2,
-you _must_ add the `txindex=1` line from Example 3-1 to it otherwise you won't
-be able to make queries on transaction (tx) IDs via the Bitcoin API (which is
-something the exercises in the book do).
+**NOTE**: even if you use the resource-constrained config in
+[Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2], you _must_ add the
+`txindex=1` line from [Example 3-1][Mastering Bitcoin 2nd Edition Example 3-1]
+to it otherwise you won't be able to make queries on transaction (`tx`) IDs via
+the Bitcoin API (which is something the exercises in the book do).
 
 ### Test local Bitcoin node
 
@@ -92,15 +93,15 @@ Once `bitcoin` and `bitcoin-core` are installed and
 $ bitcoin-cli getinfo
 ```
 
-Bitcoin nodes run at `http://localhost:8332` by default, so you can also use
-[`curl`][Curl] (`$ brew install curl`) to send API requests
+Bitcoin nodes run at `http://localhost:8332` by default, so if you want you can
+also use [`curl`][Curl] (`$ brew install curl`) to send API requests
 to the node:
 
 ```
 curl --user <user>:<password> --data-binary '{"jsonrpc":"1.0","method":"getinfo","params":[]}' http://localhost:8332
 ```
 
-Replace `<user>` and `<password>` with the relevant values from your
+Replace `<user>` and `<password>` with the relevant values from your<br />
 `~/Library/Application\ Support/Bitcoin/bitcoin.conf` file.
 
 ### Example code config
@@ -140,6 +141,18 @@ iex(2)> MasteringBitcoin.RPCExample.run
 
 - [Controlling a Bitcode Node in Elixir][]
 
+## Social
+
+[![Contact][Twitter Badge]][Twitter Link]
+
+<a href="http://stackoverflow.com/users/567863/paul-fioravanti">
+  <img src="http://stackoverflow.com/users/flair/567863.png"
+       width="208"
+       height="58"
+       alt="profile for Paul Fioravanti at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
+       title="profile for Paul Fioravanti at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
+
 [Controlling a Bitcode Node in Elixir]: http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/
 [Curl]: https://curl.haxx.se/
 [Elixir]: https://github.com/elixir-lang/elixir
@@ -149,3 +162,5 @@ iex(2)> MasteringBitcoin.RPCExample.run
 [Mastering Bitcoin 2nd Edition Example 3-1]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#full_index_node
 [Mastering Bitcoin 2nd Edition Example 3-2]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#constrained_resources
 [Mastering Bitcoin 2nd Edition Github repo]: https://github.com/bitcoinbook/bitcoinbook
+[Twitter Badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
+[Twitter Link]: https://twitter.com/paulfioravanti
