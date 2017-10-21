@@ -13,6 +13,12 @@ in the book (eg `rpc_example.py`) have been ported to an individual module
 
 ## Setup
 
+```
+$ git clone git@github.com:paulfioravanti/mastering_bitcoin.git
+$ cd mastering_bitcoin
+$ mix deps.get
+```
+
 The books says that:
 
 > If you're reading this book and interested in developing bitcoin software,
@@ -22,13 +28,14 @@ So, that means running a full Bitcoin node on your laptop, and needing to
 download the entire blockchain (> 100GB worth of transactions) on to your
 computer. The book gives an example node configuration file for a
 resource-constrained system (Example 3-2), and that's what I used to not
-completely tie up my network with Bitcoin traffic.
+completely tie up my network and kill my bandwidth limits with Bitcoin traffic.
 
 Some of the code examples in the book use very specific blockchain transactions
 which you may not have on your local Bitcoin node. Rather than wait however many
 days/weeks it would take to potentially get those specific transactions before
 beginning to code, my ported code samples have catch-all conditions that use
-other transactions from any available in the local blockchain.
+other transactions from any available in the local blockchain to generate any
+desired outputs.
 
 ## Installation
 
@@ -105,6 +112,27 @@ $ cp config/config.example.exs config/config.exs
 
 Then, edit the `bitcoin_url: "http://<user>:<password>@localhost:8332"` line
 of the `config.exs` file and substitute out the user and password information.
+
+### Run the code
+
+Start the Bitcoin service, open up an `iex` console, and run the functions.
+For example:
+
+```
+$ brew services start bitcoin
+$ iex -S mix
+iex(1)> MasteringBitcoin.Client.getinfo
+{:ok,
+ %{"balance" => 0.0, "blocks" => 375964, "connections" => 8,
+   "difficulty" => 59335351233.86657, "errors" => "",
+   "keypoololdest" => 1508115486, "keypoolsize" => 1000, "paytxfee" => 0.0,
+   "protocolversion" => 70015, "proxy" => "", "relayfee" => 0.0001,
+   "testnet" => false, "timeoffset" => -3, "version" => 140200,
+   "walletversion" => 130000}}
+iex(2)> MasteringBitcoin.RPCExample.run
+375945
+:ok
+```
 
 ## Helpful Resources
 
