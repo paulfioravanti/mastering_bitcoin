@@ -8,7 +8,7 @@ defmodule MasteringBitcoin.RPCBlock do
   def run do
     block_value =
       # The block height where Alice's transaction was recorded.
-      "277316"
+      277316
       |> get_blockhash()
       |> get_transactions()
       |> calculate_block_value()
