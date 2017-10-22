@@ -45,10 +45,8 @@ defmodule MasteringBitcoin.RPCTransaction do
   defp extract_values({:ok, decoded_tx}) do
     decoded_tx
     |> Map.get("vout")
-    |> Enum.each(fn(output) ->
-         "(#{output["scriptPubKey"]["addresses"]}, #{output["value"]})"
-         |> IO.puts()
-       end)
+    |> Stream.map(&("(#{&1["scriptPubKey"]["addresses"]}, #{&1["value"]})"))
+    |> Enum.each(&IO.puts/1)
   end
   defp extract_values(error), do: error
 end
