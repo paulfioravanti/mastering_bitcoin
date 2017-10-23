@@ -21,8 +21,13 @@ defmodule MasteringBitcoin.Client do
     bitcoin_rpc("getblockhash", [block_height])
   end
 
+  # NOTE: Deprecated RPC as of bitcoin-core: 0.15.0.1
   def getinfo do
     bitcoin_rpc("getinfo")
+  end
+
+  def getmininginfo do
+    bitcoin_rpc("getmininginfo")
   end
 
   def getrawtransaction(txid) do

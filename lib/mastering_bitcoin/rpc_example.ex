@@ -7,7 +7,11 @@ defmodule MasteringBitcoin.RPCExample do
 
   def run do
     # Run the getinfo command, store the resulting data in info
-    case RawProxy.getinfo do
+    # NOTE: getinfo, as used in the book, has been deprecated and will be
+    # removed from future versions of Bitcoin Core.
+    # It looks like getmininginfo and is the API needed to get the current
+    # number of blocks in a node, so use that.
+    case RawProxy.getmininginfo do
       {:ok, info} ->
         info
         # Retrieve the 'blocks' element from the info
