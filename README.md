@@ -50,10 +50,11 @@ book:
 - `bitcoin`: provides `bitcoind` (the Bitcoin daemon) and `bitcoin-cli`
   (the command-line interface that enables communication via Bticoin's API)
 - `libbitcoin`: Various Bitcoin-related helper functions
+  (`libbitcoin-explorer` will bring in this library)
 - `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command.
 
 ```
-$ brew install bitcoin libbitcoin libbitcoin-explorer
+$ brew install bitcoin libbitcoin-explorer
 ```
 
 This package comes with a service that can start and stop the `bitcoind`
