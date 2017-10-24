@@ -4,11 +4,19 @@ This repository contains example code related to the book
 [Mastering Bitcoin 2nd Edition][]
 ([book Github repo][Mastering Bitcoin 2nd Edition Github repo]).
 
-The code examples in the book are all in Python and C++, so I decided to port
-them to [Elixir][]. Since Elixir can't use third-party libraries outside of a
-mix project, each of the files referenced in the book (eg `rpc_example.py`)
+The code examples in the book are all in Python and C++, so I'm _attempting_ to
+port them to [Elixir][]. Since Elixir can't use third-party libraries outside of
+a mix project, each of the files referenced in the book (eg `rpc_example.py`)
 have been ported to an individual module (eg `MasteringBitcoin.RPCExample`) and
 their functions can be run inside an `iex` terminal.
+
+I haven't been able to find Elixir libraries that wrap or provide a replacement
+for the following libraries, so exercises involving them have empty modules
+associated with them:
+
+- [`libbitcoin`](https://github.com/libbitcoin/libbitcoin)
+- [`pybitcointools`](https://github.com/vbuterin/pybitcointools)
+- [`ecdsa`](https://github.com/warner/python-ecdsa)
 
 ## Setup
 
