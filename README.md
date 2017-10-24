@@ -44,12 +44,16 @@ These instructions relate to what I had to do for Mac OSX to get up and running:
 
 ### Bitcoin
 
-Use [Homebrew][] to install the `bitcoin` package, that provides `bitcoind`
-(the Bitcoin daemon) and `bitcoin-cli` (the command-line interface that enables
-communication via Bticoin's API):
+Use [Homebrew][] to install Bitcoin packages needed for code examples in the
+book:
+
+- `bitcoin`: provides `bitcoind` (the Bitcoin daemon) and `bitcoin-cli`
+  (the command-line interface that enables communication via Bticoin's API)
+- `libbitcoin`: Various Bitcoin-related helper functions
+- `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command.
 
 ```
-$ brew install bitcoin
+$ brew install bitcoin libbitcoin libbitcoin-explorer
 ```
 
 This package comes with a service that can start and stop the `bitcoind`
