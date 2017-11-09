@@ -14,9 +14,9 @@ I haven't been able to find Elixir libraries that wrap or provide a replacement
 for the following libraries, so exercises involving them have empty modules
 associated with them:
 
-- [`libbitcoin`](https://github.com/libbitcoin/libbitcoin)
-- [`pybitcointools`](https://github.com/vbuterin/pybitcointools)
-- [`ecdsa`](https://github.com/warner/python-ecdsa)
+- [`libbitcoin`][libbitcoin]
+- [`pybitcointools`][pybitcointools]
+- [`ecdsa`][ecdsa]
 
 ## Setup
 
@@ -113,7 +113,7 @@ $ bitcoin-cli getinfo
 ```
 
 Bitcoin nodes run at `http://localhost:8332` by default, so if you want you can
-also use [`curl`][Curl] (`$ brew install curl`) to send API requests
+also use [`curl`][curl] (`$ brew install curl`) to send API requests
 to the node:
 
 ```
@@ -164,24 +164,22 @@ iex(2)> MasteringBitcoin.RPCExample.run
 
 ## Social
 
-[![Contact][Twitter Badge]][Twitter Link]
-
-<a href="http://stackoverflow.com/users/567863/paul-fioravanti">
-  <img src="http://stackoverflow.com/users/flair/567863.png"
-       width="208"
-       height="58"
-       alt="profile for Paul Fioravanti at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
-       title="profile for Paul Fioravanti at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
-</a>
+[![Contact][twitter-badge]][twitter-url]<br />
+[![Stack Overflow][stackoverflow-badge]][stackoverflow-url]
 
 [Controlling a Bitcode Node in Elixir]: http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/
-[Curl]: https://curl.haxx.se/
+[curl]: https://curl.haxx.se/
+[ecdsa]: https://github.com/warner/python-ecdsa
 [Elixir]: https://github.com/elixir-lang/elixir
 [Homebrew]: https://github.com/Homebrew/brew
 [Homebrew Cask]: https://github.com/caskroom/homebrew-cask
+[libbitcoin]: https://github.com/libbitcoin/libbitcoin
 [Mastering Bitcoin 2nd Edition]: https://www.amazon.com/Mastering-Bitcoin-Programming-Open-Blockchain/dp/1491954388
 [Mastering Bitcoin 2nd Edition Example 3-1]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#full_index_node
 [Mastering Bitcoin 2nd Edition Example 3-2]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#constrained_resources
 [Mastering Bitcoin 2nd Edition Github repo]: https://github.com/bitcoinbook/bitcoinbook
-[Twitter Badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
-[Twitter Link]: https://twitter.com/paulfioravanti
+[pybitcointools]: https://github.com/vbuterin/pybitcointools
+[stackoverflow-badge]: http://stackoverflow.com/users/flair/567863.png
+[stackoverflow-url]: http://stackoverflow.com/users/567863/paul-fioravanti
+[twitter-badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
+[twitter-url]: https://twitter.com/paulfioravanti
