@@ -21,3 +21,6 @@ erl_crash.dump
 
 # Use the example file given for config
 config/config.exs
+
+# Ignore asdf files
+.tool-versions*
