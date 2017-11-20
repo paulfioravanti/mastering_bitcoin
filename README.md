@@ -61,7 +61,7 @@ book:
 - `libbitcoin`: Various Bitcoin-related helper functions
   (`libbitcoin-explorer` will bring in this library)
 - `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command
-- `gcc`: In order to compile the C++ files in the `c_src/` directory
+- `gcc`: In order to compile the C++ files in the `src/` directory
 
 ```sh
 brew install bitcoin libbitcoin-explorer gcc
@@ -165,7 +165,7 @@ iex(2)> MasteringBitcoin.RPCExample.run
 
 Example of running Elixir files that require compilation of C++ files (if there
 are any compliation failures, you may need to tweak the command in the
-`@compile` module attribute within the Elixir file):
+`@src_compile` module attribute within the Elixir file):
 
 ```elixir
 iex(1)> MasteringBitcoin.Addr.run

@@ -9,16 +9,16 @@ defmodule MasteringBitcoin.Addr do
   C++ file directly, and then simply output the result in Elixir.
   """
 
-  @compile """
-  g++ -std=c++11 -o c_src/addr c_src/addr.cpp \
+  @src_compile """
+  g++ -std=c++11 -o src/addr src/addr.cpp \
   $(pkg-config --cflags --libs libbitcoin)
   """
-  @execute "./c_src/addr"
+  @src_execute "./src/addr"
 
   def run do
-    Porcelain.shell(@compile)
+    Porcelain.shell(@src_compile)
 
-    @execute
+    @src_execute
     |> Porcelain.shell()
     |> Map.fetch!(:out)
     |> IO.write()
