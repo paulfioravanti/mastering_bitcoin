@@ -3,11 +3,23 @@ defmodule MasteringBitcoin.VanityMiner do
   Example 4-9. Vanity address miner
 
   NOTE: There isn't an Elixir library that wraps the C++ libbitcoin library,
-  and I couldn't figure out how to get Elixir to talk directly to libbitcoin,
-  and I couldn't seem to get the example addr.cpp file compiling in C++, so
-  this stays skipped for now.
+  and I can't figure out how to get Elixir to talk directly to libbitcoin.
+  So, instead, the Porcelain library is used to compile and run the original
+  C++ file directly, and then simply output the result in Elixir.
   """
 
+  @src_compile """
+  g++ -std=c++11 -o src/vanity-miner src/vanity-miner.cpp \
+  $(pkg-config --cflags --libs libbitcoin)
+  """
+  @src_execute "./src/vanity-miner"
+
   def run do
+    Porcelain.shell(@src_compile)
+
+    @src_execute
+    |> Porcelain.shell()
+    |> Map.fetch!(:out)
+    |> IO.write()
   end
 end
