@@ -24,3 +24,7 @@ config/config.exs
 
 # Ignore asdf files
 .tool-versions*
+
+# Ignore C++ executables
+/c_src/*
+!/c_src/*.cpp
