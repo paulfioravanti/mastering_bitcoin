@@ -33,3 +33,8 @@ use Mix.Config
 # 2. Fill in username and password of your local machine's bitcoin full node
 config :mastering_bitcoin,
   bitcoin_url: "http://<user>:<password>@localhost:8332"
+
+# NOTE: Not sure how to install Goon properly or even if it's really needed
+# for this project, so for now, just use the "basic driver".
+# https://github.com/alco/goon
+config :porcelain, driver: Porcelain.Driver.Basic

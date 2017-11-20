@@ -11,8 +11,9 @@ have been ported to an individual module (eg `MasteringBitcoin.RPCExample`) and
 their functions can be run inside an `iex` terminal.
 
 I haven't been able to find Elixir libraries that wrap or provide a replacement
-for the following libraries, so exercises involving them have empty modules
-associated with them:
+for the following libraries, so exercises involving them either have empty
+modules associated with them, or they are simply Elixir wrappers around
+compiling and running the original files from the command line:
 
 - [`libbitcoin`][]
 - [`pybitcointools`][]
@@ -59,10 +60,11 @@ book:
   (the command-line interface that enables communication via Bticoin's API)
 - `libbitcoin`: Various Bitcoin-related helper functions
   (`libbitcoin-explorer` will bring in this library)
-- `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command.
+- `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command
+- `gcc`: In order to compile the C++ files in the `c_src/` directory
 
 ```sh
-brew install bitcoin libbitcoin-explorer
+brew install bitcoin libbitcoin-explorer gcc
 ```
 
 This package comes with a service that can start and stop the `bitcoind`
@@ -145,6 +147,8 @@ brew services start bitcoin
 iex -S mix
 ```
 
+Example of interacting with the Bitcoin node:
+
 ```elixir
 iex(1)> MasteringBitcoin.Client.getinfo
 {:ok,
@@ -156,6 +160,17 @@ iex(1)> MasteringBitcoin.Client.getinfo
    "walletversion" => 130000}}
 iex(2)> MasteringBitcoin.RPCExample.run
 375945
+:ok
+```
+
+Example of running Elixir files that require compilation of C++ files (if there
+are any compliation failures, you may need to tweak the command in the
+`@compile` module attribute within the Elixir file):
+
+```elixir
+iex(1)> MasteringBitcoin.Addr.run
+Public key: 0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa
+Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 :ok
 ```
 

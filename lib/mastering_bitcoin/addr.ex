@@ -4,13 +4,23 @@ defmodule MasteringBitcoin.Addr do
   private key.
 
   NOTE: There isn't an Elixir library that wraps the C++ libbitcoin library,
-  and I couldn't figure out how to get Elixir to talk directly to libbitcoin,
-  and I couldn't seem to get the example addr.cpp file compiling in C++, so
-  this stays skipped for now.
+  and I can't figure out how to get Elixir to talk directly to libbitcoin.
+  So, instead, the Porcelain library is used to compile and run the original
+  C++ file directly, and then simply output the result in Elixir.
   """
 
+  @compile """
+  g++ -std=c++11 -o c_src/addr c_src/addr.cpp \
+  $(pkg-config --cflags --libs libbitcoin)
+  """
+  @execute "./c_src/addr"
+
   def run do
-    # Private secret key.
-    "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
+    Porcelain.shell(@compile)
+
+    @execute
+    |> Porcelain.shell()
+    |> Map.fetch!(:out)
+    |> IO.write()
   end
 end
