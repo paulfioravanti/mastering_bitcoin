@@ -60,10 +60,11 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   defp generate_private_key(pid) do
     with private_key <- random_key(pid),
          decoded_private_key <- decode_private_key(pid, private_key) do
-      if 0 < decoded_private_key && decoded_private_key < @n do
-        [private_key, decoded_private_key]
-      else
-        generate_private_key(pid)
+      case decoded_private_key do
+        n when n in 0..@n ->
+          [private_key, decoded_private_key]
+        _out_of_range ->
+          generate_private_key(pid)
       end
     end
   end
