@@ -62,9 +62,19 @@ book:
   (`libbitcoin-explorer` will bring in this library)
 - `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command
 - `gcc`: In order to compile the C++ files in the `src/` directory
+- `python`: Needed to run [Python][] files in the `src/` directory.
+  Install either via brew or via a version control manager like [asdf][].
+
+Install brew packages:
 
 ```sh
 brew install bitcoin libbitcoin-explorer gcc
+```
+
+Install Python packages:
+
+```sh
+pip install bitcoin
 ```
 
 This package comes with a service that can start and stop the `bitcoind`
@@ -183,6 +193,7 @@ Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 [![Contact][twitter-badge]][twitter-url]<br />
 [![Stack Overflow][stackoverflow-badge]][stackoverflow-url]
 
+[asdf]: https://github.com/asdf-vm/asdf
 [Controlling a Bitcode Node in Elixir]: http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/
 [curl]: https://curl.haxx.se/
 [`ecdsa`]: https://github.com/warner/python-ecdsa
@@ -195,6 +206,7 @@ Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 [Mastering Bitcoin 2nd Edition Example 3-2]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#constrained_resources
 [Mastering Bitcoin 2nd Edition Github repo]: https://github.com/bitcoinbook/bitcoinbook
 [`pybitcointools`]: https://github.com/vbuterin/pybitcointools
+[Python]: https://www.python.org/
 [stackoverflow-badge]: http://stackoverflow.com/users/flair/567863.png
 [stackoverflow-url]: http://stackoverflow.com/users/567863/paul-fioravanti
 [twitter-badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
