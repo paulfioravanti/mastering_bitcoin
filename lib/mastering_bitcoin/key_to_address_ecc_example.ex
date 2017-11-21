@@ -97,7 +97,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   defp encode_compressed_private_key(pid, compressed_private_key) do
     pid
     |> decode_private_key(compressed_private_key)
-    |> (&(encode_private_key(pid, &1))).()
+    |> (fn(decoded_pk) -> encode_private_key(pid, decoded_pk) end).()
   end
 
   # Multiply the EC generator point G with the private key to get a
@@ -127,7 +127,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   end
 
   # Generate bitcoin address from public key (hex or compressed)
-  def generate_bitcoin_address(pid, public_key) do
+  defp generate_bitcoin_address(pid, public_key) do
     pid
     |> Python.call(@python_file, "bitcoin.pubkey_to_address", [public_key])
     |> to_string()
