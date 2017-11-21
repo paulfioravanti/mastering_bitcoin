@@ -21,6 +21,8 @@ defmodule MasteringBitcoin.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      # Erlport wrapper for Elixir
+      {:export, "~> 0.1.0"},
       # HTTP client for Elixir powered by hackney
       {:httpoison, "~> 0.13"},
       # An incredibly fast, pure Elixir JSON library
