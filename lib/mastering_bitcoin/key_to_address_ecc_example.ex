@@ -11,6 +11,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   @compression_suffix "01"
   @hex "hex"
   @wif "wif"
+  @hex_encoder 16
 
   use Export.Python
 
@@ -103,12 +104,13 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
         0 -> "02"
         _ -> "03"
       end
-    compressed_prefix <> python(pid, "encode", [public_key_x, 16])
+    compressed_prefix <>
+      python(pid, "bitcoin.encode", [public_key_x, @hex_encoder])
   end
 
   # Generate bitcoin address from public key (hex or compressed)
   def generate_bitcoin_address(pid, public_key) do
-    python(pid, "pubkey_to_address", [public_key])
+    python(pid, "bitcoin.pubkey_to_address", [public_key])
   end
 
   defp python(pid, function, arguments) do
