@@ -1,3 +1,8 @@
+# Adapted from the original Python script located here:
+# https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/ec-math.py
+#
+# The goal was to make this script act more like an API wrapper around Python's
+# ecdsa library that the Elixir code could call.
 import ecdsa
 
 def public_key_elliptic_curve_point(p, a, b, gx, gy, r, secret):
