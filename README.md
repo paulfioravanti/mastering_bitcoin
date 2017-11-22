@@ -11,13 +11,19 @@ have been ported to an individual module (eg `MasteringBitcoin.RPCExample`) and
 their functions can be run inside an `iex` terminal.
 
 I haven't been able to find Elixir libraries that wrap or provide a replacement
-for the following libraries, so exercises involving them either have empty
-modules associated with them, or they are simply Elixir wrappers around
-compiling and running the original files from the command line:
+for the following libraries:
 
 - [`libbitcoin`][]
 - [`pybitcointools`][]
 - [`ecdsa`][]
+
+So, for C++ files that use `libbitcoin`, those source files are included in
+this repo as-is with no direct Elixir porting, and an Elixir module will use
+[Porcelain][] to simply compile and run the code in the C++ files (until I can
+figure out how to get Elixir to talk to them). For Python files, source code
+has been moved out into Elixir as much as possible, and only code that is
+responsible for calling Python-only libraries left in Python source files.
+API-like communication between Elixir and Python is done using [Export][].
 
 ## Setup
 
@@ -74,7 +80,7 @@ brew install bitcoin libbitcoin-explorer gcc
 Install Python packages:
 
 ```sh
-pip install bitcoin
+pip install bitcoin ecdsa
 ```
 
 This package comes with a service that can start and stop the `bitcoind`
@@ -198,6 +204,7 @@ Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 [curl]: https://curl.haxx.se/
 [`ecdsa`]: https://github.com/warner/python-ecdsa
 [Elixir]: https://github.com/elixir-lang/elixir
+[Export]: https://github.com/fazibear/export
 [Homebrew]: https://github.com/Homebrew/brew
 [Homebrew Cask]: https://github.com/caskroom/homebrew-cask
 [`libbitcoin`]: https://github.com/libbitcoin/libbitcoin
@@ -205,6 +212,7 @@ Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 [Mastering Bitcoin 2nd Edition Example 3-1]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#full_index_node
 [Mastering Bitcoin 2nd Edition Example 3-2]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#constrained_resources
 [Mastering Bitcoin 2nd Edition Github repo]: https://github.com/bitcoinbook/bitcoinbook
+[Porcelain]: https://github.com/alco/porcelain
 [`pybitcointools`]: https://github.com/vbuterin/pybitcointools
 [Python]: https://www.python.org/
 [stackoverflow-badge]: http://stackoverflow.com/users/flair/567863.png
