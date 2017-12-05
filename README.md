@@ -193,6 +193,8 @@ Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 ## Helpful Resources
 
 - [Controlling a Bitcode Node in Elixir][]
+- [Using Python's Bitcoin libraries in Elixir][]
+  (A blog post I did about this very repo)
 
 ## Social
 
@@ -219,3 +221,4 @@ Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
 [stackoverflow-url]: http://stackoverflow.com/users/567863/paul-fioravanti
 [twitter-badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
 [twitter-url]: https://twitter.com/paulfioravanti
+[Using Python's Bitcoin libraries in Elixir]: https://paulfioravanti.com/elixir/bitcoin/2017/12/04/using-pythons-bitcoin-libraries-in-Elixir.html
