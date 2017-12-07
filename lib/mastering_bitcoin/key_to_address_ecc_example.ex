@@ -3,8 +3,8 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   Example 4-5. Key and address generation and formatting with the
   pybitcointools library.
 
-  Port over of most code contained in `key-to-address-ecc-example.py` and
-  uses the Export library to talk to Python-based bitcoin libraries.
+  Port over of most code contained in the `key-to-address-ecc-example.py` file,
+  and uses the Export library to talk to Python-based bitcoin libraries.
   """
 
   # Elliptic curve parameters (secp256k1)
