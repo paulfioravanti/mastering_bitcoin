@@ -1,6 +1,8 @@
 defmodule MasteringBitcoin.ECMath do
   @moduledoc """
-  Example 4-7. A script demonstrating elliptic curve math used for bitcoin keys
+  Example 4-7. A script demonstrating elliptic curve math used for bitcoin keys.
+
+  Port over of `ec_math.py` file.
   """
 
   # secp256k1, http://www.oid-info.com/get/1.3.132.0.10

@@ -1,6 +1,8 @@
 defmodule MasteringBitcoin.EllipticCurvePointCheck do
   @moduledoc """
   Example 4-1. Using Python to confirm that this point is on the elliptic curve.
+
+  Port over of the commands run in the Python console.
   """
 
   require Integer

@@ -1,8 +1,12 @@
 defmodule MasteringBitcoin.RPCBlock do
   @moduledoc """
-  rpc_block.py example
+  Example 3-5. Retrieving a block and adding all the transaction outputs.
+
+  Port over of `rpc_block.py` file (with fallback capabilities when Alice's
+  transaction isn't in the local blockchain).
   """
 
+  # Alias is as per the book's naming of its client as RawProxy
   alias MasteringBitcoin.Client, as: RawProxy
 
   def run do

@@ -1,6 +1,9 @@
 defmodule MasteringBitcoin.RPCTransaction do
   @moduledoc """
-  rpc_transaction.py example
+  Example 3-4. Retrieving a transaction and iterating it's outputs.
+
+  Port over of `rpc_transaction.py` file (with fallback capabilities when
+  Alice's transaction ID isn't in the local blockchain).
   """
 
   alias MasteringBitcoin.Client, as: RawProxy

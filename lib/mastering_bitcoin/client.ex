@@ -1,6 +1,8 @@
 defmodule MasteringBitcoin.Client do
   @moduledoc """
   Client module to interface with a Bitcoin full node.
+
+  Takes the place of Python's `from bitcoin.rpc import RawProxy`.
   """
 
   @bitcoin_url Application.get_env(:mastering_bitcoin, :bitcoin_url)

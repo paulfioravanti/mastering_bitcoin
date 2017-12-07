@@ -1,6 +1,8 @@
 defmodule MasteringBitcoin.RPCExample do
   @moduledoc """
-  rpc_example.py example
+  Example 3-3. Running getinfo via Bitcoin Core's JSON-RPC API.
+
+  Port over of `rpc_example.py` file.
   """
 
   alias MasteringBitcoin.Client, as: RawProxy
