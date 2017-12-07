@@ -13,7 +13,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   @gy 32670510020758816978083085130507043184471273380659243275938904335757337482424
   @g {@gx, @gy}
 
-  @python_src "src"
+  @python_src "priv"
   @python_file "key-to-address-ecc-example"
   @compression_suffix "01"
   @hex "hex"

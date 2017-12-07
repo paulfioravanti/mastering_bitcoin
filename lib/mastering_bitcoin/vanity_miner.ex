@@ -9,10 +9,10 @@ defmodule MasteringBitcoin.VanityMiner do
   """
 
   @src_compile """
-  g++ -std=c++11 -o src/vanity-miner src/vanity-miner.cpp \
+  g++ -std=c++11 -o priv/vanity-miner priv/vanity-miner.cpp \
   $(pkg-config --cflags --libs libbitcoin)
   """
-  @src_execute "./src/vanity-miner"
+  @src_execute "./priv/vanity-miner"
 
   def run do
     Porcelain.shell(@src_compile)

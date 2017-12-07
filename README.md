@@ -67,8 +67,8 @@ book:
 - `libbitcoin`: Various Bitcoin-related helper functions
   (`libbitcoin-explorer` will bring in this library)
 - `libbitcoin-explorer`: Libbitcoin's CLI tool. Provides the `bx` command
-- `gcc`: In order to compile the C++ files in the `src/` directory
-- `python`: Needed to run [Python][] files in the `src/` directory.
+- `gcc`: In order to compile the C++ files in the `priv/` directory
+- `python`: Needed to run [Python][] files in the `priv/` directory.
   Install either via brew or via a version control manager like [asdf][].
 
 Install brew packages:

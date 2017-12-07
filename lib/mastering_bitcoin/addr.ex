@@ -10,10 +10,10 @@ defmodule MasteringBitcoin.Addr do
   """
 
   @src_compile """
-  g++ -std=c++11 -o src/addr src/addr.cpp \
+  g++ -std=c++11 -o priv/addr priv/addr.cpp \
   $(pkg-config --cflags --libs libbitcoin)
   """
-  @src_execute "./src/addr"
+  @src_execute "./priv/addr"
 
   def run do
     Porcelain.shell(@src_compile)
