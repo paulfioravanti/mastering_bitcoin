@@ -1,5 +1,5 @@
 # This Makefile is automatically generated with "mix cure.bootstrap"!
-# Please do not remove the following variables as they point to 
+# Please do not remove the following variables as they point to
 # the necessary source-files.
 
 INC_PARAMS = /Users/paul/Documents/Software/Code/elixir/mastering_bitcoin/deps/cure/c_src
@@ -13,6 +13,6 @@ ALL = program
 # Targets:
 all: $(ALL)
 program:
-	g++ $(C_FLAGS) -o program main.cpp $(ELIXIR_COMM_C) $(BTC_LIBS)
+	g++ $(C_FLAGS) -x c++ -o program main.cpp $(ELIXIR_COMM_C) $(BTC_LIBS)
 clean:
 	rm -f program

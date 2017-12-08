@@ -4,11 +4,6 @@ defmodule MasteringBitcoin.Addr do
   private key.
 
   Currently a non-port over of the `addr.cpp` file.
-
-  NOTE: There isn't an Elixir library that wraps the C++ libbitcoin library,
-  and I can't figure out how to get Elixir to talk directly to libbitcoin.
-  So, instead, the Porcelain library is used to compile and run the original
-  C++ file directly, and then simply output the result in Elixir.
   """
 
   @src_compile """
@@ -16,20 +11,28 @@ defmodule MasteringBitcoin.Addr do
   $(pkg-config --cflags --libs libbitcoin)
   """
   @src_execute "./priv/addr"
+  # Private secret key string as base16
+  @private_key "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
+  @generate_public_key 0
 
   def run do
-    {:ok, server} = Cure.load "./c_src/program"
-    private_key = "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
-    Cure.send_data(server, private_key, :sync, fn(response) ->
-      response
-      |> IO.puts()
-    end)
-    Cure.stop(server)
+    {:ok, server} = Cure.Server.start_link("./c_src/program")
+    public_key = generate_public_key(server)
+    IO.puts(public_key)
+    :ok = Cure.Server.stop(server)
     # Porcelain.shell(@src_compile)
 
     # @src_execute
     # |> Porcelain.shell()
     # |> Map.fetch!(:out)
     # |> IO.write()
+  end
+
+  def generate_public_key(server) do
+    Cure.send_data(server, <<@generate_public_key, @private_key>>, :once)
+    receive do
+      {:cure_data, response} ->
+        response
+    end
   end
 end
