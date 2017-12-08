@@ -1,6 +1,9 @@
 #include <bitcoin/bitcoin.hpp>
 #include "addr.h"
 
+const int GENERATE_PUBLIC_KEY = 1;
+const int CREATE_BITCOIN_ADDRESS = 2;
+
 int main(void) {
   int bytes_read;
   byte buffer[MAX_BUFFER_SIZE];
@@ -22,16 +25,15 @@ void process_command(byte* buffer, int bytes_read) {
 
   if (bytes_read > 0) {
     switch (function) {
-      case 1: {  // generate_public_key
+      case GENERATE_PUBLIC_KEY:
         retval = generate_public_key(buffer);
         break;
-      } case 2: { // create_bitcoin_address
+      case CREATE_BITCOIN_ADDRESS:
         retval = create_bitcoin_address(buffer);
         break;
-      } default: {
+      default:
         fprintf(stderr, "not a valid function %i\n", function);
         exit(1);
-      }
     }
     memcpy(buffer, retval.data(), retval.length());
     send_msg(buffer, retval.size());
