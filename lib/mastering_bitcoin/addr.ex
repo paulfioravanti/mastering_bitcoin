@@ -3,9 +3,8 @@ defmodule MasteringBitcoin.Addr do
   Example 4-3. Creating a Base58Check-encoded bitcoin address from a
   private key.
 
-  Currently a non-port over of the `addr.cpp` file.
-  Port over of some code contained in the `addr.cpp` file. Uses the following
-  libraries to get Elixir talking with C++:
+  Port over of some code contained in the `addr.cpp` file.
+  Uses the following libraries to get Elixir talking with C++:
 
   Porcelain - Reaches out to the shell to compile C++ executable
   Cure - Talks to the C++ code via Ports
@@ -13,7 +12,8 @@ defmodule MasteringBitcoin.Addr do
 
   @cpp_executable "priv/addr"
   @cpp_clean "rm #{@cpp_executable}"
-  @cpp_compile Application.get_env(:mastering_bitcoin, :cpp_compile)
+  @cpp_compile \
+    Application.get_env(:mastering_bitcoin, :cpp_compile)
     |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, @cpp_executable) end).()
   # Private secret key string as base16
   @private_key "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
@@ -24,9 +24,7 @@ defmodule MasteringBitcoin.Addr do
 
   def run(r \\ nil) do
     # recompile cpp code
-    if r == :r do
-      Porcelain.shell(@cpp_clean)
-    end
+    if r == :r, do: Porcelain.shell(@cpp_clean)
     Porcelain.shell(@cpp_compile)
     with {:ok, pid} <- Cure.Server.start_link(@cpp_executable),
          public_key <- generate_public_key(pid),

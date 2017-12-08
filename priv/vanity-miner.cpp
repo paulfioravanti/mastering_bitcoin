@@ -2,12 +2,9 @@
 #include <bitcoin/bitcoin.hpp>
 #include "vanity-miner.h"
 
-// The string we are searching for
-const std::string search = "1kid";
-
 int main() {
-  /* int bytes_read; */
-  /* byte buffer[MAX_BUFFER_SIZE]; */
+  int bytes_read;
+  byte buffer[MAX_BUFFER_SIZE];
 
   // random_device on Linux uses "/dev/urandom"
   // CAUTION: Depending on implementation this RNG may not be secure enough!
@@ -15,7 +12,7 @@ int main() {
   std::random_device random;
   std::default_random_engine engine(random());
 
-  /* while ((bytes_read = read_msg(buffer)) > 0) { */
+  while ((bytes_read = read_msg(buffer)) > 0) {
     // Loop continuously...
     while (true) {
       // Generate a random secret.
@@ -23,14 +20,18 @@ int main() {
       // Get the address.
       std::string address = bitcoin_address(secret);
       // Does it match our search string? (1kid)
-      if (match_found(address)) {
+      if (match_found(address, buffer)) {
         // Success!
-        std::cout << "Found vanity address! " << address << std::endl;
-        std::cout << "Secret: " << bc::encode_base16(secret) << std::endl;
-        return 0;
+        memcpy(buffer, address.data(), address.length());
+        send_msg(buffer, address.size());
+
+        std::string encoded_secret = bc::encode_base16(secret);
+        memcpy(buffer, encoded_secret.data(), encoded_secret.length());
+        send_msg(buffer, encoded_secret.size());
+        break;
       }
     }
-  /* } */
+  }
 
   // Should never reach here!
   return 0;
@@ -55,7 +56,7 @@ std::string bitcoin_address(const bc::ec_secret& secret) {
   return payaddr.encoded();
 }
 
-bool match_found(const std::string& address) {
+bool match_found(const std::string& address, const std::string search) {
   auto addr_it = address.begin();
   // Loop through the search string comparing it to the lower case
   // character of the supplied address.
