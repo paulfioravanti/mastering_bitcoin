@@ -35,7 +35,7 @@ config :mastering_bitcoin,
   bitcoin_url: "http://<user>:<password>@localhost:8332",
   cpp_compile: """
   g++ -std=c++11 -I./deps/cure/c_src -L./deps/cure/c_src -O3 -x c++ \
-  -o priv/{file} priv/{file}.cpp ./deps/cure/c_src/elixir_comm.c \
+  -o {file} {file}.cpp ./deps/cure/c_src/elixir_comm.c \
   $(pkg-config --cflags --libs libbitcoin)
   """
 

@@ -11,10 +11,10 @@ defmodule MasteringBitcoin.Addr do
   Cure - Talks to the C++ code via Ports
   """
 
-  @cpp_compile Application.get_env(:mastering_bitcoin, :cpp_compile)
-               |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, "addr") end).()
-  @cpp_clean "rm priv/addr"
   @cpp_executable "priv/addr"
+  @cpp_clean "rm #{@cpp_executable}"
+  @cpp_compile Application.get_env(:mastering_bitcoin, :cpp_compile)
+    |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, @cpp_executable) end).()
   # Private secret key string as base16
   @private_key "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
 

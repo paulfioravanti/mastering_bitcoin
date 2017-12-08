@@ -10,10 +10,8 @@ defmodule MasteringBitcoin.VanityMiner do
   C++ file directly, and then simply output the result in Elixir.
   """
 
-  @src_compile """
-  g++ -std=c++11 -o priv/vanity-miner priv/vanity-miner.cpp \
-  $(pkg-config --cflags --libs libbitcoin)
-  """
+  @src_compile Application.get_env(:mastering_bitcoin, :cpp_compile)
+    |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, "priv/vanity-miner") end).()
   @src_execute "./priv/vanity-miner"
 
   def run do
