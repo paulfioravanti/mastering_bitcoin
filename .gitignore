@@ -26,6 +26,7 @@ config/config.exs
 .tool-versions*
 
 # Ignore C++ executables
-/src/*
-!/src/*.cpp
-!/src/*.py
+/priv/*
+!/priv/*.cpp
+!/priv/*.h
+!/priv/*.py

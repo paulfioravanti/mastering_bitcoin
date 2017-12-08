@@ -11,12 +11,9 @@ defmodule MasteringBitcoin.Addr do
   Cure - Talks to the C++ code via Ports
   """
 
+  @cpp_compile Application.get_env(:mastering_bitcoin, :cpp_compile)
+               |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, "addr") end).()
   @cpp_clean "rm priv/addr"
-  @cpp_compile """
-  g++ -std=c++11 -I./deps/cure/c_src -L./deps/cure/c_src -O3 -x c++ \
-  -o priv/addr priv/addr.cpp ./deps/cure/c_src/elixir_comm.c \
-  $(pkg-config --cflags --libs libbitcoin)
-  """
   @cpp_executable "priv/addr"
   # Private secret key string as base16
   @private_key "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
@@ -25,8 +22,11 @@ defmodule MasteringBitcoin.Addr do
   @generate_public_key 1
   @create_bitcoin_address 2
 
-  def run do
-    Porcelain.shell(@cpp_clean)
+  def run(r \\ nil) do
+    # recompile cpp code
+    if r == :r do
+      Porcelain.shell(@cpp_clean)
+    end
     Porcelain.shell(@cpp_compile)
     with {:ok, pid} <- Cure.Server.start_link(@cpp_executable),
          public_key <- generate_public_key(pid),
