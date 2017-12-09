@@ -43,3 +43,14 @@ config :mastering_bitcoin,
 # for this project, so for now, just use the "basic driver".
 # https://github.com/alco/goon
 config :porcelain, driver: Porcelain.Driver.Basic
+
+if Mix.env == :dev do
+  # Configures automated testing/linting
+  config :mix_test_watch,
+  clear: true,
+  tasks: [
+    "test",
+    # "dogma",
+    "credo --strict",
+  ]
+end
