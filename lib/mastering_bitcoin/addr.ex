@@ -19,7 +19,9 @@ defmodule MasteringBitcoin.Addr do
     |> Application.get_env(:cpp_compile)
     |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, @cpp_executable) end).()
   # Private secret key string as base16
-  @private_key "038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776"
+  @private_key """
+  038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
+  """
 
   # Integers representing C++ methods
   @generate_public_key 1

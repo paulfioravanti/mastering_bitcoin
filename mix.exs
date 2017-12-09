@@ -25,6 +25,8 @@ defmodule MasteringBitcoin.Mixfile do
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       # Interface C-code with Erlang/Elixir using Ports
       {:cure, "~> 0.4.0"},
+      # A code style linter for Elixir, powered by shame
+      {:dogma, "~> 0.1", only: [:dev, :test]},
       # Erlport wrapper for Elixir to interface with Python code
       {:export, "~> 0.1.0"},
       # HTTP client for Elixir powered by hackney

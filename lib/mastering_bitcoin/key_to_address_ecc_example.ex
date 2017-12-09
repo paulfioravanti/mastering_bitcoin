@@ -9,11 +9,21 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
 
   # Elliptic curve parameters (secp256k1)
   # REF: https://github.com/vbuterin/pybitcointools/blob/master/bitcoin/main.py
-  # credo:disable-for-lines:4 Credo.Check.Readability.LargeNumbers
-  # credo:disable-for-lines:3 Credo.Check.Readability.MaxLineLength
-  @n 115792089237316195423570985008687907852837564279074904382605163141518161494337
-  @gx 55066263022277343669578718895168534326250603453777594175500187360389116729240
-  @gy 32670510020758816978083085130507043184471273380659243275938904335757337482424
+  @n """
+     115792089237316195423570985008687907852\
+     837564279074904382605163141518161494337\
+     """
+     |> String.to_integer()
+  @gx """
+      55066263022277343669578718895168534326\
+      250603453777594175500187360389116729240\
+      """
+      |> String.to_integer()
+  @gy """
+      32670510020758816978083085130507043184\
+      471273380659243275938904335757337482424\
+      """
+      |> String.to_integer()
   @g {@gx, @gy}
 
   @python_src \

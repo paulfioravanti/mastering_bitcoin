@@ -1,25 +1,36 @@
 defmodule Chapter3Test do
   use ExUnit.Case
+  import ExUnit.CaptureIO
 
   @moduletag :bitcoin_server
 
   setup_all do
     Porcelain.shell("brew services start bitcoin")
-    Process.sleep(10000)
+    # The following time is arbitrary, but seems to be enough time
+    # for the server to be spun up and for wallets to be inspected and
+    # the blockchain checked.
+    Process.sleep(15000)
 
     on_exit(fn -> Porcelain.shell("brew services stop bitcoin") end)
   end
 
-  test "Example 3-3" do
-    MasteringBitcoin.RPCExample.run()
+  setup(%{module: module}) do
+    result = capture_io(fn -> module.run() end)
+    {:ok, [result: result]}
   end
 
-  test "Example 3-4" do
-    MasteringBitcoin.RPCTransaction.run()
+  @tag module: MasteringBitcoin.RPCExample
+  test "Example 3-3", %{result: result} do
+    assert result
   end
 
-  test "Example 3-5" do
-    MasteringBitcoin.RPCBlock.run()
+  @tag module: MasteringBitcoin.RPCTransaction
+  test "Example 3-4", %{result: result} do
+    assert result
   end
 
+  @tag module: MasteringBitcoin.RPCBlock
+  test "Example 3-5", %{result: result} do
+    assert result
+  end
 end

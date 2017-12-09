@@ -49,8 +49,8 @@ if Mix.env == :dev do
   config :mix_test_watch,
   clear: true,
   tasks: [
-    "test",
-    # "dogma",
+    "dogma",
     "credo --strict",
+    "test"
   ]
 end
