@@ -23,7 +23,7 @@ Bitcoin libraries has been left in the source files.
 
 API-like communication between Elixir and C++ is done using [Cure][] (with
 [Porcelain][] being responsible for executing shell commands that compile the
-C++ files), and between Elixir and Python [Export][] is used.
+C++ files), and [Export][] is used for communication between Elixir and Python.
 
 ## Setup
 
@@ -40,8 +40,8 @@ The book says that:
 
 So, that means running a full Bitcoin node on your laptop, and needing to
 download the entire blockchain (> 100GB worth of transactions) on to your
-computer. The book gives an example node configuration file for a
-resource-constrained system
+computer (there is no way around this). The book gives an example node
+configuration file for a resource-constrained system
 ([Example 3-2][Mastering Bitcoin 2nd Edition Example 3-2]), and that's what I
 used to not completely tie up my network and kill my bandwidth limits with
 Bitcoin traffic.
