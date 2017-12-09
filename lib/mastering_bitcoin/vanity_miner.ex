@@ -9,10 +9,13 @@ defmodule MasteringBitcoin.VanityMiner do
   Cure - Talks to the C++ code via Ports
   """
 
+  alias Cure.Server, as: Cure
+
   @cpp_executable "priv/vanity-miner"
   @cpp_clean "rm #{@cpp_executable}"
   @cpp_compile \
-    Application.get_env(:mastering_bitcoin, :cpp_compile)
+    :mastering_bitcoin
+    |> Application.get_env(:cpp_compile)
     |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, @cpp_executable) end).()
   @vanity_string "1kid"
 
@@ -21,11 +24,11 @@ defmodule MasteringBitcoin.VanityMiner do
     if r == :r, do: Porcelain.shell(@cpp_clean)
     Porcelain.shell(@cpp_compile)
 
-    with {:ok, pid} <- Cure.Server.start_link(@cpp_executable),
+    with {:ok, pid} <- Cure.start_link(@cpp_executable),
          [vanity_address, secret] <- generate_vanity_address(pid) do
       IO.puts("Found vanity address! #{inspect(vanity_address)}")
       IO.puts("Secret: #{inspect(secret)}")
-      :ok = Cure.Server.stop(pid)
+      :ok = Cure.stop(pid)
     end
   end
 

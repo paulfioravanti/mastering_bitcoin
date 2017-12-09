@@ -9,12 +9,17 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
 
   # Elliptic curve parameters (secp256k1)
   # REF: https://github.com/vbuterin/pybitcointools/blob/master/bitcoin/main.py
+  # credo:disable-for-lines:4 Credo.Check.Readability.LargeNumbers
+  # credo:disable-for-lines:3 Credo.Check.Readability.MaxLineLength
   @n 115792089237316195423570985008687907852837564279074904382605163141518161494337
   @gx 55066263022277343669578718895168534326250603453777594175500187360389116729240
   @gy 32670510020758816978083085130507043184471273380659243275938904335757337482424
   @g {@gx, @gy}
 
-  @python_src :code.priv_dir(:mastering_bitcoin) |> Path.basename()
+  @python_src \
+    :mastering_bitcoin
+    |> :code.priv_dir()
+    |> Path.basename()
   @python_file "key-to-address-ecc-example"
   @compression_suffix "01"
   @hex "hex"
@@ -27,7 +32,8 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   def run do
     with {:ok, pid} <- Python.start(python_path: @python_src),
          [private_key, decoded_private_key] <- generate_private_key(pid),
-         wif_encoded_private_key <- encode_private_key(pid, decoded_private_key),
+         wif_encoded_private_key <-
+           encode_private_key(pid, decoded_private_key),
          compressed_private_key <- create_compressed_private_key(private_key),
          wif_compressed_private_key <-
            encode_compressed_private_key(pid, compressed_private_key),
