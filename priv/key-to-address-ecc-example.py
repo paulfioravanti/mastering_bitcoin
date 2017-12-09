@@ -1,5 +1,6 @@
 # Adapted from the original Python script located here:
 # https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/key-to-address-ecc-example.py
+#
 # The goal was to make this script act more like an API wrapper around Python's
 # bitcoin library that the Elixir code could call.
 # Where possible, the Elixir code calls methods on `bitcoin` directly, but there

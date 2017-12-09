@@ -1,3 +1,5 @@
+// Adapted from the original C++ code located here:
+// https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/addr.cpp
 #include <bitcoin/bitcoin.hpp>
 #include "addr.h"
 

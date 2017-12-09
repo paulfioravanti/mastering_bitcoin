@@ -1,3 +1,5 @@
+// Adapted from the original C++ code located here:
+// https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/vanity-miner.cpp
 #include <random>
 #include <bitcoin/bitcoin.hpp>
 #include "vanity-miner.h"

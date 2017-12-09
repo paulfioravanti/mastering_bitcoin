@@ -1,3 +1,5 @@
+// Adapted from the original C++ code located here:
+// https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/addr.cpp
 #ifndef MAIN_H
 #define MAIN_H
 #include "elixir_comm.h"
