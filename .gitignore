@@ -27,6 +27,7 @@ config/config.exs
 
 # Ignore C++ executables
 /priv/*
+/priv/__pycache__/
 !/priv/*.cpp
 !/priv/*.h
 !/priv/*.py
