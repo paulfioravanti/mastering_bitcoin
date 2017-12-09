@@ -9,6 +9,11 @@ defmodule MasteringBitcoin.RPCBlock do
   # Alias is as per the book's naming of its client as RawProxy
   alias MasteringBitcoin.Client, as: RawProxy
 
+  @bitcoin_server_error """
+  Bitcoin server still warming up. \
+  run `brew services start bitcoin` for a while, then try again. \
+  """
+
   def run do
     block_value =
       # The block height where Alice's transaction was recorded.
@@ -24,6 +29,8 @@ defmodule MasteringBitcoin.RPCBlock do
     case RawProxy.getblockhash(blockheight) do
       {:ok, blockhash} ->
         blockhash
+      {:error, %{"code" => -28, "message" => message}} ->
+        raise @bitcoin_server_error <> "Error message: #{message}"
       {:error, _reason} ->
         get_blockhash_from_latest_block()
     end

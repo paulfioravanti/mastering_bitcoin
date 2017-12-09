@@ -8,6 +8,11 @@ defmodule MasteringBitcoin.RPCTransaction do
 
   alias MasteringBitcoin.Client, as: RawProxy
 
+  @bitcoin_server_error """
+  Bitcoin server still warming up. \
+  run `brew services start bitcoin` for a while, then try again. \
+  """
+
   def run do
     # Alice's transaction ID
     "0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2"
@@ -22,6 +27,8 @@ defmodule MasteringBitcoin.RPCTransaction do
     case RawProxy.getrawtransaction(txid) do
       {:ok, raw_tx} ->
         raw_tx
+      {:error, %{"code" => -28, "message" => message}} ->
+        raise @bitcoin_server_error <> "Error message: #{message}"
       {:error, _reason} ->
         get_raw_transaction_from_latest_block()
     end
