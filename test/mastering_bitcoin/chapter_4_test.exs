@@ -12,22 +12,22 @@ defmodule Chapter4Test do
     assert result
   end
 
-  @tag module: MasteringBitcoin.Addr
+  @tag module: MasteringBitcoin.Addr, lang: :cpp
   test "Example 4-3", %{result: result} do
     assert result
   end
 
-  @tag module: MasteringBitcoin.KeyToAddressECCExample
+  @tag module: MasteringBitcoin.KeyToAddressECCExample, lang: :py
   test "Example 4-5", %{result: result} do
     assert result
   end
 
-  @tag module: MasteringBitcoin.ECMath
+  @tag module: MasteringBitcoin.ECMath, lang: :py
   test "Example 4-7", %{result: result} do
     assert result
   end
 
-  @tag module: MasteringBitcoin.VanityMiner
+  @tag module: MasteringBitcoin.VanityMiner, lang: :cpp
   test "Example 4-9", %{result: result} do
     assert result
   end
