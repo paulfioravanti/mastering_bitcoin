@@ -16,7 +16,7 @@ defmodule MasteringBitcoin.VanityMiner do
   @cpp_compile \
     :mastering_bitcoin
     |> Application.get_env(:cpp_compile)
-    |> (fn(cmd) -> Regex.replace(~r/{file}/, cmd, @cpp_executable) end).()
+    |> apply([@cpp_executable])
   @vanity_string "1kid"
 
   def run(r \\ nil) do
