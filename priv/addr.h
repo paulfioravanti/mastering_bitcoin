@@ -1,7 +1,7 @@
 // Adapted from the original C++ code located here:
 // https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/addr.cpp
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef ADDR_H
+#define ADDR_H
 #include "elixir_comm.h"
 
 std::string generate_public_key(std::string priv_key);
