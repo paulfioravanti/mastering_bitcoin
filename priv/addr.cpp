@@ -28,10 +28,10 @@ void process_command(byte* buffer, int bytes_read) {
   if (bytes_read > 0) {
     switch (function) {
       case GENERATE_PUBLIC_KEY:
-        retval = generate_public_key(buffer);
+        retval = generate_public_key(arg);
         break;
       case CREATE_BITCOIN_ADDRESS:
-        retval = create_bitcoin_address(buffer);
+        retval = create_bitcoin_address(arg);
         break;
       default:
         fprintf(stderr, "not a valid function %i\n", function);
