@@ -1,7 +1,7 @@
 // Adapted from the original C++ code located here:
 // https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/code/vanity-miner.cpp
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef VANITY_MINER_H
+#define VANITY_MINER_H
 #include "elixir_comm.h"
 
 bc::ec_secret random_secret(std::default_random_engine& engine);
