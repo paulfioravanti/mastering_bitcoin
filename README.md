@@ -187,8 +187,8 @@ are any compiliation failures on your system, you may need to tweak the
 
 ```elixir
 iex(1)> MasteringBitcoin.Addr.run()
-Public key: 0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa
-Address: 1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK
+Public key: "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
+Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
 :ok
 ```
 
