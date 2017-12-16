@@ -12,18 +12,9 @@ defmodule MasteringBitcoin.VanityMiner do
   alias Cure.Server, as: Cure
 
   @cpp_executable "priv/vanity-miner"
-  @cpp_clean "rm #{@cpp_executable}"
-  @cpp_compile \
-    :mastering_bitcoin
-    |> Application.get_env(:cpp_compile)
-    |> apply([@cpp_executable])
   @vanity_string "1kid"
 
-  def run(r \\ nil) do
-    # recompile cpp code
-    if r == :r, do: Porcelain.shell(@cpp_clean)
-    Porcelain.shell(@cpp_compile)
-
+  def run do
     with {:ok, pid} <- Cure.start_link(@cpp_executable),
          [vanity_address, secret] <- generate_vanity_address(pid) do
       IO.puts("Found vanity address! #{inspect(vanity_address)}")

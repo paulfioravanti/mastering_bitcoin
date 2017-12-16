@@ -13,11 +13,6 @@ defmodule MasteringBitcoin.Addr do
   alias Cure.Server, as: Cure
 
   @cpp_executable "priv/addr"
-  @cpp_clean "rm #{@cpp_executable}"
-  @cpp_compile \
-    :mastering_bitcoin
-    |> Application.get_env(:cpp_compile)
-    |> apply([@cpp_executable])
   # Private secret key string as base16
   @private_key """
   038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
@@ -27,10 +22,7 @@ defmodule MasteringBitcoin.Addr do
   @generate_public_key 1
   @create_bitcoin_address 2
 
-  def run(r \\ nil) do
-    # recompile cpp code
-    if r == :r, do: Porcelain.shell(@cpp_clean)
-    Porcelain.shell(@cpp_compile)
+  def run do
     with {:ok, pid} <- Cure.start_link(@cpp_executable),
          public_key <- generate_public_key(pid),
          bitcoin_address <- create_bitcoin_address(pid, public_key) do

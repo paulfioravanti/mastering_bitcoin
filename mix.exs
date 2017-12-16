@@ -4,10 +4,11 @@ defmodule MasteringBitcoin.Mixfile do
   def project do
     [
       app: :mastering_bitcoin,
-      version: "0.1.0",
+      compilers: Mix.compilers ++ [:cure, :"cure.deps"],
+      deps: deps(),
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      version: "0.1.0"
     ]
   end
 
@@ -34,9 +35,7 @@ defmodule MasteringBitcoin.Mixfile do
       # Automatically run your Elixir project's tests each time you save a file
       {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
       # An incredibly fast, pure Elixir JSON library
-      {:poison, "~> 3.1"},
-      # Work with external processes
-      {:porcelain, "~> 2.0"}
+      {:poison, "~> 3.1"}
     ]
   end
 end
