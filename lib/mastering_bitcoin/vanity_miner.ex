@@ -11,11 +11,11 @@ defmodule MasteringBitcoin.VanityMiner do
 
   alias Cure.Server, as: Cure
 
-  @cpp_object_file "priv/vanity-miner.o"
+  @cpp_executable "priv/vanity-miner"
   @vanity_string "1kid"
 
   def run do
-    with {:ok, pid} <- Cure.start_link(@cpp_object_file),
+    with {:ok, pid} <- Cure.start_link(@cpp_executable),
          [vanity_address, secret] <- generate_vanity_address(pid) do
       IO.puts("Found vanity address! #{inspect(vanity_address)}")
       IO.puts("Secret: #{inspect(secret)}")
