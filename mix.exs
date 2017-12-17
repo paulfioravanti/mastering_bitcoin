@@ -4,7 +4,6 @@ defmodule MasteringBitcoin.Mixfile do
   def project do
     [
       app: :mastering_bitcoin,
-      compilers: Mix.compilers ++ [:cure, :"cure.deps"],
       deps: deps(),
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,

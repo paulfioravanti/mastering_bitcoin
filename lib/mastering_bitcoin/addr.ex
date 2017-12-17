@@ -12,7 +12,7 @@ defmodule MasteringBitcoin.Addr do
 
   alias Cure.Server, as: Cure
 
-  @cpp_executable "priv/addr"
+  @cpp_object_file "priv/addr.o"
   # Private secret key string as base16
   @private_key """
   038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
@@ -23,7 +23,7 @@ defmodule MasteringBitcoin.Addr do
   @create_bitcoin_address 2
 
   def run do
-    with {:ok, pid} <- Cure.start_link(@cpp_executable),
+    with {:ok, pid} <- Cure.start_link(@cpp_object_file),
          public_key <- generate_public_key(pid),
          bitcoin_address <- create_bitcoin_address(pid, public_key) do
       IO.puts("Public key: #{inspect(public_key)}")
