@@ -21,8 +21,7 @@ int main(void) {
 // sent from Elixir
 void process_command(byte* buffer, int bytes_read) {
   int function = buffer[0];
-  char arg[1024];
-  get_string_arg(buffer, arg, bytes_read);
+  std::string arg = (char*) &buffer[1];
   std::string retval;
 
   if (bytes_read > 0) {
@@ -43,11 +42,6 @@ void process_command(byte* buffer, int bytes_read) {
     fprintf(stderr, "no command given");
     exit(1);
   }
-}
-
-void get_string_arg(byte* buffer, char* string, int bytes_read) {
-  buffer[bytes_read] = '\0';
-  strcpy(string, (char*) &buffer[1]);
 }
 
 std::string generate_public_key(std::string priv_key) {
