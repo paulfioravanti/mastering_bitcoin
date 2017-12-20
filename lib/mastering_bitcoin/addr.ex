@@ -4,10 +4,6 @@ defmodule MasteringBitcoin.Addr do
   private key.
 
   Port over of some code contained in the `addr.cpp` file.
-  Uses the following libraries to get Elixir talking with C++:
-
-  Porcelain - Reaches out to the shell to compile C++ executable
-  Cure - Talks to the C++ code via Ports
   """
 
   alias Cure.Server, as: Cure

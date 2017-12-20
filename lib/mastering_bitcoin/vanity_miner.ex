@@ -3,10 +3,6 @@ defmodule MasteringBitcoin.VanityMiner do
   Example 4-9. Vanity address miner
 
   Port over of some code contained in the `vanity-miner.cpp` file.
-  Uses the following libraries to get Elixir talking with C++:
-
-  Porcelain - Reaches out to the shell to compile C++ executable
-  Cure - Talks to the C++ code via Ports
   """
 
   alias Cure.Server, as: Cure
