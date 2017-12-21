@@ -21,9 +21,8 @@ So, for C++ and Python files, source code has been moved out into Elixir as much
 as possible, and only code that is responsible for calling language-specific
 Bitcoin libraries has been left in the source files.
 
-API-like communication between Elixir and C++ is done using [Cure][] (with
-[Porcelain][] being responsible for executing shell commands that compile the
-C++ files), and [Export][] is used for communication between Elixir and Python.
+API-like communication between Elixir and C++ is done using [Cure][],
+and [Export][] is used for communication between Elixir and Python.
 
 ## Setup
 
@@ -235,7 +234,10 @@ mix test.watch
 
 - [Controlling a Bitcode Node in Elixir][]
 - [Using Python's Bitcoin libraries in Elixir][]
-  (A blog post I did about this very repo)
+- [Using C++ Bitcoin libraries in Elixir][]
+
+The latter two are blog posts I wrote documenting the things I needed to do
+to get Elixir communicating with Python and C++.
 
 ## Social
 
@@ -261,12 +263,12 @@ mix test.watch
 [Mastering Bitcoin 2nd Edition Example 3-2]: https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc#constrained_resources
 [Mastering Bitcoin 2nd Edition Github repo]: https://github.com/bitcoinbook/bitcoinbook
 [mix test.watch]: https://github.com/lpil/mix-test.watch
-[Porcelain]: https://github.com/alco/porcelain
 [`pybitcointools`]: https://github.com/vbuterin/pybitcointools
 [Python]: https://www.python.org/
 [stackoverflow-badge]: http://stackoverflow.com/users/flair/567863.png
 [stackoverflow-url]: http://stackoverflow.com/users/567863/paul-fioravanti
 [twitter-badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
 [twitter-url]: https://twitter.com/paulfioravanti
+[Using C++ Bitcoin libraries in Elixir]: https://paulfioravanti.com/elixir/bitcoin/2017/12/13/using-c-plus-plus-bitcoin-libraries-in-elixir.html
 [Using Python's Bitcoin libraries in Elixir]: https://paulfioravanti.com/elixir/bitcoin/2017/12/04/using-pythons-bitcoin-libraries-in-Elixir.html
 [vim]: http://www.vim.org/
