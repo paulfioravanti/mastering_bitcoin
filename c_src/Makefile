@@ -7,7 +7,7 @@ LIBBITCOIN_DEPS = $(shell pkg-config --cflags --libs libbitcoin)
 C_FLAGS = $(CURE_DEPS) $(ELIXIR_COMM_C) $(LIBBITCOIN_DEPS) -O3
 PRIV_DIR = $(APP_DIR)/priv
 C_SRC_DIR = $(APP_DIR)/c_src
-EXECUTABLES = addr vanity-miner
+EXECUTABLES = merkle vanity-miner addr
 
 all: $(EXECUTABLES)
 # REF: https://www.gnu.org/software/make/manual/html_node/Static-Usage.html#Static-Usage
