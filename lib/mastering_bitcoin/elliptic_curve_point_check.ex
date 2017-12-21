@@ -5,7 +5,7 @@ defmodule MasteringBitcoin.EllipticCurvePointCheck do
   Port over of the commands run in the Python console.
   """
 
-  require Integer
+  import MasteringBitcoin, only: [pow: 2]
 
   @p """
      115792089237316195423570985008687907853\
@@ -27,16 +27,5 @@ defmodule MasteringBitcoin.EllipticCurvePointCheck do
     @x
     |> (&(pow(&1, 3) + 7 - pow(@y, 2))).()
     |> Integer.mod(@p)
-  end
-
-  # NOTE: Elixir doesn't have an exponent function, and `:math.pow` in Erlang's
-  # library doesn't play nice with large integer exponent values, so use a
-  # custom function instead.
-  # REF: https://stackoverflow.com/a/32030190
-  defp pow(_n, 0), do: 1
-  defp pow(n, exp) when Integer.is_odd(exp), do: n * pow(n, exp - 1)
-  defp pow(n, exp) do
-    result = pow(n, div(exp, 2))
-    result * result
   end
 end
