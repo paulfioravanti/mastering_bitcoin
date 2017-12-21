@@ -1,4 +1,4 @@
-defmodule Chapter3Test do
+defmodule Chapter03Test do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
