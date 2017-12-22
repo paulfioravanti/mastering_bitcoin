@@ -2,16 +2,11 @@ defmodule Chapter10Test do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
-  setup(%{module: module}) do
-    result = capture_io(fn -> module.run() end)
-    {:ok, [result: result]}
-  end
-
-  @tag module: MasteringBitcoin.MaxMoney
   describe "MasteringBitcoin.MaxMoney.run()" do
     setup do
+      result = capture_io(fn -> MasteringBitcoin.MaxMoney.run() end)
       expected = "Total BTC to ever be created: 2099999997690000 Satoshis\n"
-      {:ok, [expected: expected]}
+      {:ok, [result: result, expected: expected]}
     end
 
     test "Example 10-1", %{result: result, expected: expected} do
@@ -19,14 +14,15 @@ defmodule Chapter10Test do
     end
   end
 
-  @tag module: MasteringBitcoin.SatoshiWords, lang: :cpp
+  @tag lang: :cpp
   describe "MasteringBitcoin.SatoshiWords.run()" do
     setup do
+      result = capture_io(fn -> MasteringBitcoin.SatoshiWords.run() end)
       expected =
         """
         The Times 03/Jan/2009 Chancellor on brink of second bailout for banks
         """
-      {:ok, [expected: expected]}
+      {:ok, [result: result, expected: expected]}
     end
 
     test "Example 10-6", %{result: result, expected: expected} do
@@ -34,9 +30,9 @@ defmodule Chapter10Test do
     end
   end
 
-  @tag module: MasteringBitcoin.HashExample
   describe "MasteringBitcoin.HashExample.run()" do
     setup do
+      result = capture_io(fn -> MasteringBitcoin.HashExample.run() end)
       expected =
         """
         I am Satoshi Nakamoto0 => \
@@ -80,11 +76,25 @@ defmodule Chapter10Test do
         I am Satoshi Nakamoto19 => \
         cda56022ecb5b67b2bc93a2d764e75fc6ec6e6e79ff6c39e21d03b45aa5b303a
         """
-      {:ok, [expected: expected]}
+      {:ok, [result: result, expected: expected]}
     end
 
     test "Example 10-9", %{result: result, expected: expected} do
       assert result == expected
+    end
+  end
+
+  describe "MasteringBitcoin.ProofOfWorkExample.run()" do
+    setup do
+      result =
+        # Running the 0..32 range of difficulty takes too long, so inject
+        # a smaller range of difficulty.
+        capture_io(fn -> MasteringBitcoin.ProofOfWorkExample.run(0..5) end)
+      {:ok, [result: result]}
+    end
+
+    test "Example 10-11", %{result: result} do
+      assert result
     end
   end
 end
