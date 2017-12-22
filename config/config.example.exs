@@ -36,6 +36,8 @@ config :mastering_bitcoin,
   http://<user>:<password>@localhost:8332
   """
 
+config :porcelain, driver: Porcelain.Driver.Basic
+
 if Mix.env == :dev do
   # Configures automated testing/linting
   config :mix_test_watch,
