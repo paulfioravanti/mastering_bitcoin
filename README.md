@@ -4,8 +4,8 @@ This repository contains example code related to the book
 [Mastering Bitcoin 2nd Edition][]
 ([book Github repo][Mastering Bitcoin 2nd Edition Github repo]).
 
-The code examples in the book are all in Python and C++, so I'm _attempting_ to
-port them to [Elixir][]. Since Elixir can't use third-party libraries outside of
+The code examples in the book are all in Python and C++, so I have ported them
+to [Elixir][]. Since Elixir can't use third-party libraries outside of
 a mix project, each of the files referenced in the book (eg `rpc_example.py`)
 have been ported to an individual module (eg `MasteringBitcoin.RPCExample`) and
 their functions can be run inside an `iex` terminal.
@@ -54,7 +54,7 @@ any desired outputs.
 
 ## Installation
 
-These instructions relate to what I had to do for Mac OSX to get up and running
+These instructions relate to what I had to do for Mac OS to get up and running
 (your mileage may vary with other operating systems):
 
 ### Bitcoin
@@ -136,7 +136,8 @@ Bitcoin nodes run at `http://localhost:8332` by default, and if you want you can
 also use [`curl`][curl] (`brew install curl`) to send API requests to the node:
 
 ```sh
-curl --user <user>:<password> --data-binary '{"jsonrpc":"1.0","method":"getinfo","params":[]}' http://localhost:8332
+curl --user <user>:<password> --data-binary \
+  '{"jsonrpc":"1.0","method":"getinfo","params":[]}' http://localhost:8332
 ```
 
 Replace `<user>` and `<password>` with the relevant values from your<br />
@@ -195,9 +196,9 @@ Example of running Elixir files that require Python libraries:
 
 ```elixir
 iex(1)> MasteringBitcoin.ECMath.run()
-Secret: 76497699402904578784811806082397843232750285367593369208731087007120587404213
-EC point: {57239427007104299630483439879927188058287895941305706210701488924875951881267, 52165304091649203337605762013611225541526214366439596521175895001167065705415}
-BTC public key: "037e8c5e1b2a6e9233c19ba8b29881af555d13adb7e50a0ac926fc52b1370abc33"
+Secret: 7649...4213
+EC point: {5723...1267, 5216...5415}
+BTC public key: "037e...bc33"
 :ok
 ```
 

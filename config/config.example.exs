@@ -32,13 +32,16 @@ use Mix.Config
 # 1. $ cp config/config.example.exs config/config.exs
 # 2. Fill in username and password of your local machine's bitcoin full node
 config :mastering_bitcoin,
-  bitcoin_url: "http://<user>:<password>@localhost:8332"
+  bitcoin_url: """
+  http://<user>:<password>@localhost:8332
+  """
 
 if Mix.env == :dev do
   # Configures automated testing/linting
   config :mix_test_watch,
   clear: true,
   tasks: [
+    # "compile.cure",
     "dogma",
     "credo --strict",
     "test"
