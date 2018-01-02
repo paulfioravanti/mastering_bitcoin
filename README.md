@@ -270,6 +270,6 @@ to get Elixir communicating with Python and C++.
 [stackoverflow-url]: http://stackoverflow.com/users/567863/paul-fioravanti
 [twitter-badge]: https://img.shields.io/badge/contact-%40paulfioravanti-blue.svg
 [twitter-url]: https://twitter.com/paulfioravanti
-[Using C++ Bitcoin libraries in Elixir]: https://paulfioravanti.com/elixir/bitcoin/2017/12/13/using-c-plus-plus-bitcoin-libraries-in-elixir.html
-[Using Python's Bitcoin libraries in Elixir]: https://paulfioravanti.com/elixir/bitcoin/2017/12/04/using-pythons-bitcoin-libraries-in-Elixir.html
+[Using C++ Bitcoin libraries in Elixir]: https://paulfioravanti.com/blog/2017/12/13/using-c-plus-plus-bitcoin-libraries-in-elixir/
+[Using Python's Bitcoin libraries in Elixir]: https://paulfioravanti.com/blog/2017/12/04/using-pythons-bitcoin-libraries-in-elixir/
 [vim]: http://www.vim.org/
