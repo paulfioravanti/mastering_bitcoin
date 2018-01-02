@@ -24,7 +24,7 @@ defmodule MasteringBitcoin.Mixfile do
       # A static code analysis tool for the Elixir language
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       # Interface C-code with Erlang/Elixir using Ports
-      {:cure, "~> 0.4.0"},
+      {:cure, "~> 0.5.0"},
       # A code style linter for Elixir, powered by shame
       {:dogma, "~> 0.1", only: [:dev, :test]},
       # Erlport wrapper for Elixir to interface with Python code
