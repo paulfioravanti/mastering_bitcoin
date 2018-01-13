@@ -11,7 +11,7 @@ defmodule MasteringBitcoin.Addr do
   @cpp_executable "priv/addr"
   # Private secret key string as base16
   @private_key """
-  038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776\
+  038109007313A5807B2ECCC082C8C3FBB988A973CACF1A7DF9CE725C31B14776\
   """
 
   # Integers representing C++ methods

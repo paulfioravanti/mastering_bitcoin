@@ -15,7 +15,7 @@ defmodule MasteringBitcoin.RPCTransaction do
 
   def run do
     # Alice's transaction ID
-    "0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2"
+    "0627052B6F28912F2703066A912EA577F2CE4DA4CAA5A5FBD8A57286C345C2F2"
     # First, retrieve the raw transaction in hex
     |> get_raw_transaction()
     # Decode the transaction hex into a JSON object
