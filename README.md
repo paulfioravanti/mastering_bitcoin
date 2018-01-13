@@ -182,7 +182,7 @@ iex(2)> MasteringBitcoin.RPCExample.run
 ```
 
 Example of running Elixir files that require compilation of C++ files (if there
-are any compiliation failures on your system, you may need to tweak the
+are any compilation failures on your system, you may need to tweak the
 `cpp_compile` command specified in `config/config.exs`):
 
 ```elixir
@@ -233,7 +233,7 @@ mix test.watch
 
 ## Helpful Resources
 
-- [Controlling a Bitcode Node in Elixir][]
+- [Controlling a Bitcoin Node in Elixir][]
 - [Using Python's Bitcoin libraries in Elixir][]
 - [Using C++ Bitcoin libraries in Elixir][]
 
