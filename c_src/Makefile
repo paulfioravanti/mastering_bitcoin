@@ -11,6 +11,8 @@ EXECUTABLES = satoshi-words merkle vanity-miner addr
 
 all: $(EXECUTABLES)
 # REF: https://www.gnu.org/software/make/manual/html_node/Static-Usage.html#Static-Usage
-# $< - prerequisite file, $@ - executable file
+#
+# * $< - prerequisite file
+# * $@ - executable file
 $(EXECUTABLES): %: %.cpp
 	$(CC) $(C_FLAGS) $(C_SRC_DIR)/$< -o $(PRIV_DIR)/$@
