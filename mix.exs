@@ -30,7 +30,7 @@ defmodule MasteringBitcoin.Mixfile do
       # Erlport wrapper for Elixir to interface with Python code
       {:export, "~> 0.1.0"},
       # HTTP client for Elixir powered by hackney
-      {:httpoison, "~> 0.13"},
+      {:httpoison, "~> 1.0"},
       # Automatically run your Elixir project's tests each time you save a file
       {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
       # An incredibly fast, pure Elixir JSON library
