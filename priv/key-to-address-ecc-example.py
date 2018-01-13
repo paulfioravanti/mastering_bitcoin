@@ -16,13 +16,10 @@ import bitcoin
 
 # NOTE: public_key is a tuple
 def encode_pubkey(public_key, encoder):
-  encoder = encoder.decode()
-  return bitcoin.encode_pubkey(public_key, encoder)
+  return bitcoin.encode_pubkey(public_key, encoder.decode())
 
 def encode_privkey(decoded_private_key, encoder):
-  encoder = encoder.decode()
-  return bitcoin.encode_privkey(decoded_private_key, encoder)
+  return bitcoin.encode_privkey(decoded_private_key, encoder.decode())
 
 def decode_privkey(private_key, decoder):
-  decoder = decoder.decode()
-  return bitcoin.decode_privkey(private_key, decoder)
+  return bitcoin.decode_privkey(private_key, decoder.decode())
