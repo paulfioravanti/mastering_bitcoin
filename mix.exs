@@ -21,6 +21,8 @@ defmodule MasteringBitcoin.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      # Bitcoin tools and full node implementation in Elixir.
+      {:bitcoin, "~> 0.0.2"},
       # A static code analysis tool for the Elixir language
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       # Interface C-code with Erlang/Elixir using Ports
