@@ -63,6 +63,9 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       """)
       IO.puts("Public Key (x,y) coordinates is: #{inspect(public_key)}")
       IO.puts("Public Key (hex) is: #{inspect(hex_encoded_public_key)}")
+      IO.puts("""
+      Compressed Public Key (hex) is: #{inspect(hex_compressed_public_key)}\
+      """)
       IO.puts("Bitcoin Address (b58check) is: #{inspect(bitcoin_address)}")
       IO.puts("""
       Compressed Bitcoin Address (b58check) is: \
