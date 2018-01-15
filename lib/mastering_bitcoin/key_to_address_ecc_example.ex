@@ -31,8 +31,6 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
     |> Path.basename()
   @python_file "key-to-address-ecc-example"
   @compression_suffix "01"
-  @hex "hex"
-  @wif "wif"
   @hex_encoder 16
 
   use Export.Python
@@ -101,7 +99,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
 
   defp decode_private_key(pid, private_key) do
     pid
-    |> Python.call(@python_file, "decode_privkey", [private_key, @hex])
+    |> Python.call(@python_file, "decode_privkey", [private_key, "hex"])
     |> to_string()
     |> String.to_integer()
   end
@@ -109,7 +107,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   # Convert private key to WIF format
   defp encode_private_key(pid, decoded_private_key) do
     pid
-    |> Python.call(@python_file, "encode_privkey", [decoded_private_key, @wif])
+    |> Python.call(@python_file, "encode_privkey", [decoded_private_key, "wif"])
     |> to_string()
   end
 
@@ -130,7 +128,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   # Encode as hex, prefix 04
   defp encode_public_key(pid, public_key) do
     pid
-    |> Python.call(@python_file, "encode_pubkey", [public_key, @hex])
+    |> Python.call(@python_file, "encode_pubkey", [public_key, "hex"])
     |> to_string()
   end
 
