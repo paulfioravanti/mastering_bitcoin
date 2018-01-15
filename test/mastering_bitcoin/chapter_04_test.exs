@@ -1,5 +1,5 @@
 defmodule Chapter04Test do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import ExUnit.CaptureIO
 
   describe "MasteringBitcoin.EllipticCurvePointCheck.run()" do

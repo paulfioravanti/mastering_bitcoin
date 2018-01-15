@@ -23,3 +23,9 @@ def encode_privkey(decoded_private_key, encoder):
 
 def decode_privkey(private_key, decoder):
   return bitcoin.decode_privkey(private_key, decoder.decode())
+
+# 64 represents the minimum length of the string required returned back.
+# Zeros will be prepended to a string until it meets the length requirement.
+# Less characters than 64 will result in an invalid public key.
+def encode(public_key_x, encoder):
+  return bitcoin.encode(public_key_x, encoder, 64)

@@ -31,8 +31,6 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
     |> Path.basename()
   @python_file "key-to-address-ecc-example"
   @compression_suffix "01"
-  @hex "hex"
-  @wif "wif"
   @hex_encoder 16
 
   use Export.Python
@@ -63,6 +61,9 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       """)
       IO.puts("Public Key (x,y) coordinates is: #{inspect(public_key)}")
       IO.puts("Public Key (hex) is: #{inspect(hex_encoded_public_key)}")
+      IO.puts("""
+      Compressed Public Key (hex) is: #{inspect(hex_compressed_public_key)}\
+      """)
       IO.puts("Bitcoin Address (b58check) is: #{inspect(bitcoin_address)}")
       IO.puts("""
       Compressed Bitcoin Address (b58check) is: \
@@ -98,7 +99,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
 
   defp decode_private_key(pid, private_key) do
     pid
-    |> Python.call(@python_file, "decode_privkey", [private_key, @hex])
+    |> Python.call(@python_file, "decode_privkey", [private_key, "hex"])
     |> to_string()
     |> String.to_integer()
   end
@@ -106,7 +107,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   # Convert private key to WIF format
   defp encode_private_key(pid, decoded_private_key) do
     pid
-    |> Python.call(@python_file, "encode_privkey", [decoded_private_key, @wif])
+    |> Python.call(@python_file, "encode_privkey", [decoded_private_key, "wif"])
     |> to_string()
   end
 
@@ -127,7 +128,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   # Encode as hex, prefix 04
   defp encode_public_key(pid, public_key) do
     pid
-    |> Python.call(@python_file, "encode_pubkey", [public_key, @hex])
+    |> Python.call(@python_file, "encode_pubkey", [public_key, "hex"])
     |> to_string()
   end
 
@@ -137,7 +138,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       if Integer.is_even(public_key_y), do: "02", else: "03"
 
     pid
-    |> Python.call(@python_file, "bitcoin.encode", [public_key_x, @hex_encoder])
+    |> Python.call(@python_file, "encode", [public_key_x, @hex_encoder])
     |> to_string()
     |> (fn(encoded_pk) -> compressed_prefix <> encoded_pk end).()
   end

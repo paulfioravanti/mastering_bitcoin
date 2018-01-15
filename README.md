@@ -248,7 +248,7 @@ to get Elixir communicating with Python and C++.
 [asdf]: https://github.com/asdf-vm/asdf
 [Bitcoin Core]: https://bitcoin.org/en/bitcoin-core/
 [bitcoin-wallet]: https://en.bitcoin.it/wiki/Wallet
-[Controlling a Bitcode Node in Elixir]: http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/
+[Controlling a Bitcoin Node in Elixir]: http://www.east5th.co/blog/2017/09/04/controlling-a-bitcoin-node-with-elixir/
 [Credo]: https://github.com/rrrene/credo
 [Cure]: https://github.com/luc-tielen/Cure
 [curl]: https://curl.haxx.se/

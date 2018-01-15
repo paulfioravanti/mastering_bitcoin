@@ -1,5 +1,5 @@
 defmodule Chapter03Test do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import ExUnit.CaptureIO
 
   @moduletag :bitcoin_server
