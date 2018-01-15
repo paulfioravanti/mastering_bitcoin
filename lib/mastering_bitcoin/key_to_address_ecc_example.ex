@@ -140,7 +140,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       if Integer.is_even(public_key_y), do: "02", else: "03"
 
     pid
-    |> Python.call(@python_file, "bitcoin.encode", [public_key_x, @hex_encoder])
+    |> Python.call(@python_file, "encode", [public_key_x, @hex_encoder])
     |> to_string()
     |> (fn(encoded_pk) -> compressed_prefix <> encoded_pk end).()
   end
