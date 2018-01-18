@@ -19,6 +19,7 @@ defmodule MasteringBitcoin.SatoshiWords do
 
   def satoshi_words(pid) do
     Cure.send_data(pid, "Satoshi", :once)
+
     receive do
       {:cure_data, response} ->
         response

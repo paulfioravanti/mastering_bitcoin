@@ -21,16 +21,19 @@ defmodule MasteringBitcoin.VanityMiner do
 
   defp generate_vanity_address(pid) do
     Cure.send_data(pid, @vanity_string, :permanent)
+
     vanity_address =
       receive do
         {:cure_data, response} ->
           response
       end
+
     secret =
       receive do
         {:cure_data, response} ->
           response
       end
+
     [vanity_address, secret]
   end
 end

@@ -14,8 +14,8 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
   @nonce_increment 1
 
   def run(difficulty \\ 0..32) do
-     # difficulty from 0 to 31 bits
-    Enum.reduce(difficulty, "", fn(difficulty_bits, previous_block_hash) ->
+    # difficulty from 0 to 31 bits
+    Enum.reduce(difficulty, "", fn difficulty_bits, previous_block_hash ->
       difficulty = pow(2, difficulty_bits)
 
       IO.puts("Difficulty: #{difficulty} (#{difficulty_bits} bits)")
@@ -45,6 +45,7 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
   # check if this is a valid result, below the target
   defp proof_of_work(nonce, header, difficulty_bits) when nonce <= @max_nonce do
     target = pow(2, 256 - difficulty_bits)
+
     hash_result =
       :sha256
       |> :crypto.hash(to_string(header) <> to_string(nonce))
@@ -55,10 +56,12 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
         IO.puts("Success with nonce #{nonce}")
         IO.puts("Hash is #{hash_result}")
         {hash_result, nonce}
+
       _more_than_target ->
         proof_of_work(nonce + @nonce_increment, header, difficulty_bits)
     end
   end
+
   defp proof_of_work(nonce, _header, _difficulty_bits) do
     IO.puts("Failed after #{nonce} (max_nonce) tries")
     {nil, nonce}
@@ -79,8 +82,9 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
     # estimate the hashes per second
     nonce
     |> Kernel./(elapsed_time)
-    |> :erlang.float_to_binary([decimals: 4])
-    |> (&(IO.puts("Hashing Power: #{&1} hashes per second"))).()
+    |> :erlang.float_to_binary(decimals: 4)
+    |> (&IO.puts("Hashing Power: #{&1} hashes per second")).()
   end
+
   defp display_hashing_power(_elapsed_time, _nonce), do: nil
 end

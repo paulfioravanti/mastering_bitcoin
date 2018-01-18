@@ -19,11 +19,13 @@ defmodule MasteringBitcoin.MaxMoney do
   end
 
   defp max_money(reward \\ @current_reward, total \\ 0)
+
   defp max_money(reward, total) when reward > 0 do
     total = total + @reward_interval * reward
     reward = div(reward, 2)
     max_money(reward, total)
   end
+
   defp max_money(_reward, total) do
     round(total)
   end

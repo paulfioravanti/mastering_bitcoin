@@ -30,6 +30,7 @@ defmodule MasteringBitcoin.Merkle do
     Cure.send_data(pid, @hash_literal_1, :once)
     Cure.send_data(pid, @hash_literal_2, :once)
     Cure.send_data(pid, @hash_literal_3, :once)
+
     receive do
       {:cure_data, response} ->
         response

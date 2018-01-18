@@ -15,13 +15,14 @@ defmodule MasteringBitcoin.RPCBlock do
   """
 
   def run do
+    # The block height where Alice's transaction was recorded.
     block_value =
-      # The block height where Alice's transaction was recorded.
       277_316
       |> get_blockhash()
       |> get_transactions()
       |> calculate_block_value()
-    IO.puts "(Total value in block: #{block_value})"
+
+    IO.puts("(Total value in block: #{block_value})")
   end
 
   defp get_blockhash(blockheight) do
@@ -29,8 +30,10 @@ defmodule MasteringBitcoin.RPCBlock do
     case RawProxy.getblockhash(blockheight) do
       {:ok, blockhash} ->
         blockhash
+
       {:error, %{"code" => -28, "message" => message}} ->
         raise @bitcoin_server_error <> "Error message: #{message}"
+
       {:error, _reason} ->
         get_blockhash_from_latest_block()
     end
@@ -59,14 +62,14 @@ defmodule MasteringBitcoin.RPCBlock do
       transactions
     else
       {:error, reason} ->
-        IO.puts "Couldn't get transactions"
+        IO.puts("Couldn't get transactions")
         raise reason
     end
   end
 
   defp calculate_block_value(transactions) do
     # Iterate through each transaction ID in the block
-    Enum.reduce(transactions, 0, fn(txid, block_value) ->
+    Enum.reduce(transactions, 0, fn txid, block_value ->
       # Add the value of this transaction to the total
       sum_transaction_values(txid) + block_value
     end)
@@ -77,15 +80,15 @@ defmodule MasteringBitcoin.RPCBlock do
     with {:ok, raw_tx} <- RawProxy.getrawtransaction(txid),
          # Decode the transaction
          {:ok, decoded_tx} <- RawProxy.decoderawtransaction(raw_tx) do
+      # Iterate through each output in the transaction
+      # Add up the value of each output
       decoded_tx
       |> Map.get("vout")
-      # Iterate through each output in the transaction
-      |> Stream.map(&(Map.get(&1, "value")))
-      # Add up the value of each output
+      |> Stream.map(&Map.get(&1, "value"))
       |> Enum.sum()
     else
       {:error, reason} ->
-        IO.puts "Couldn't decode transaction"
+        IO.puts("Couldn't decode transaction")
         raise reason
     end
   end

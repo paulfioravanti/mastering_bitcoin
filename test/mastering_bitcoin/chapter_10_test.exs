@@ -86,10 +86,11 @@ defmodule Chapter10Test do
 
   describe "MasteringBitcoin.ProofOfWorkExample.run()" do
     setup do
+      # Running the 0..32 range of difficulty takes too long, so inject
+      # a smaller range of difficulty.
       result =
-        # Running the 0..32 range of difficulty takes too long, so inject
-        # a smaller range of difficulty.
         capture_io(fn -> MasteringBitcoin.ProofOfWorkExample.run(0..5) end)
+
       {:ok, [result: result]}
     end
 

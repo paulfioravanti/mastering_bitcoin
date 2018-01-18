@@ -25,10 +25,9 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       |> String.to_integer()
   @g {@gx, @gy}
 
-  @python_src \
-    :mastering_bitcoin
-    |> :code.priv_dir()
-    |> Path.basename()
+  @python_src :mastering_bitcoin
+              |> :code.priv_dir()
+              |> Path.basename()
   @python_file "key-to-address-ecc-example"
   @compression_suffix "01"
   @hex_encoder 16
@@ -53,22 +52,18 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       IO.puts("Private Key (hex) is: #{inspect(private_key)}")
       IO.puts("Private Key (decimal) is: #{inspect(decoded_private_key)}")
       IO.puts("Private Key (WIF) is: #{inspect(wif_encoded_private_key)}")
-      IO.puts("""
-      Private Key Compressed (hex) is: #{inspect(compressed_private_key)}\
-      """)
-      IO.puts("""
-      Private Key (WIF Compressed) is: #{inspect(wif_compressed_private_key)}\
-      """)
+      IO.write("Private Key Compressed (hex) is: ")
+      IO.write(inspect(compressed_private_key))
+      IO.write("Private Key (WIF Compressed) is: ")
+      IO.write(inspect(wif_compressed_private_key))
       IO.puts("Public Key (x,y) coordinates is: #{inspect(public_key)}")
       IO.puts("Public Key (hex) is: #{inspect(hex_encoded_public_key)}")
-      IO.puts("""
-      Compressed Public Key (hex) is: #{inspect(hex_compressed_public_key)}\
-      """)
+      IO.write("Compressed Public Key (hex) is: ")
+      IO.write(inspect(hex_compressed_public_key))
       IO.puts("Bitcoin Address (b58check) is: #{inspect(bitcoin_address)}")
-      IO.puts("""
-      Compressed Bitcoin Address (b58check) is: \
-      #{inspect(compressed_bitcoin_address)}\
-      """)
+      IO.write("Compressed Bitcoin Address (b58check) is: ")
+      IO.puts(inspect(compressed_bitcoin_address))
+
       Python.stop(pid)
     end
   end
@@ -80,6 +75,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       case decoded_private_key do
         n when n in 0..@n ->
           [private_key, decoded_private_key]
+
         _out_of_range ->
           generate_private_key(pid)
       end
@@ -114,15 +110,16 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   defp encode_compressed_private_key(pid, compressed_private_key) do
     pid
     |> decode_private_key(compressed_private_key)
-    |> (fn(decoded_pk) -> encode_private_key(pid, decoded_pk) end).()
+    |> (fn decoded_pk -> encode_private_key(pid, decoded_pk) end).()
   end
 
   # Multiply the EC generator point G with the private key to get a
   # public key point
   defp fast_multiply(pid, decoded_private_key) do
-    Python.call(
-      pid, @python_file, "bitcoin.fast_multiply", [@g, decoded_private_key]
-    )
+    Python.call(pid, @python_file, "bitcoin.fast_multiply", [
+      @g,
+      decoded_private_key
+    ])
   end
 
   # Encode as hex, prefix 04
@@ -134,13 +131,12 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
 
   # Compress public key, adjust prefix depending on whether y is even or odd
   defp compress_public_key(pid, {public_key_x, public_key_y}) do
-    compressed_prefix =
-      if Integer.is_even(public_key_y), do: "02", else: "03"
+    compressed_prefix = if Integer.is_even(public_key_y), do: "02", else: "03"
 
     pid
     |> Python.call(@python_file, "encode", [public_key_x, @hex_encoder])
     |> to_string()
-    |> (fn(encoded_pk) -> compressed_prefix <> encoded_pk end).()
+    |> (fn encoded_pk -> compressed_prefix <> encoded_pk end).()
   end
 
   # Generate bitcoin address from public key (hex or compressed)

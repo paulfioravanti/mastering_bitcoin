@@ -48,6 +48,7 @@ defmodule MasteringBitcoin.Client do
     else
       %{"error" => reason} ->
         {:error, reason}
+
       error ->
         error
     end

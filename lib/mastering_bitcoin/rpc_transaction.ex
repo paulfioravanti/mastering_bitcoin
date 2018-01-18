@@ -27,8 +27,10 @@ defmodule MasteringBitcoin.RPCTransaction do
     case RawProxy.getrawtransaction(txid) do
       {:ok, raw_tx} ->
         raw_tx
+
       {:error, %{"code" => -28, "message" => message}} ->
         raise @bitcoin_server_error <> "Error message: #{message}"
+
       {:error, _reason} ->
         get_raw_transaction_from_latest_block()
     end
@@ -55,8 +57,9 @@ defmodule MasteringBitcoin.RPCTransaction do
   defp extract_values({:ok, decoded_tx}) do
     decoded_tx
     |> Map.get("vout")
-    |> Stream.map(&("(#{&1["scriptPubKey"]["addresses"]}, #{&1["value"]})"))
+    |> Stream.map(&"(#{&1["scriptPubKey"]["addresses"]}, #{&1["value"]})")
     |> Enum.each(&IO.puts/1)
   end
+
   defp extract_values(error), do: error
 end
