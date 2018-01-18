@@ -18,14 +18,16 @@ defmodule MasteringBitcoin.RPCExample do
     # removed from future versions of Bitcoin Core.
     # It looks like getmininginfo and is the API needed to get the current
     # number of blocks in a node, so use that.
-    case RawProxy.getmininginfo do
+    case RawProxy.getmininginfo() do
       {:ok, info} ->
-        info
         # Retrieve the 'blocks' element from the info
+        info
         |> Map.get("blocks")
         |> IO.puts()
+
       {:error, %{"code" => -28, "message" => message}} ->
         raise @bitcoin_server_error <> "Error message: #{message}"
+
       {:error, error} ->
         IO.puts(error)
     end

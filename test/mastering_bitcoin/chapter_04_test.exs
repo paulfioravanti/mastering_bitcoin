@@ -32,22 +32,22 @@ defmodule Chapter04Test do
   end
 
   describe "Non-idempotent tests that output to stdout" do
-    setup(%{module: module}) do
+    setup %{mod: module} do
       result = capture_io(fn -> module.run() end)
       {:ok, [result: result]}
     end
 
-    @tag module: MasteringBitcoin.KeyToAddressECCExample, lang: :py
+    @tag mod: MasteringBitcoin.KeyToAddressECCExample, lang: :py
     test "Example 4-5", %{result: result} do
       assert result
     end
 
-    @tag module: MasteringBitcoin.ECMath, lang: :py
+    @tag mod: MasteringBitcoin.ECMath, lang: :py
     test "Example 4-7", %{result: result} do
       assert result
     end
 
-    @tag module: MasteringBitcoin.VanityMiner, lang: :cpp
+    @tag mod: MasteringBitcoin.VanityMiner, lang: :cpp
     test "Example 4-9", %{result: result} do
       assert result
     end

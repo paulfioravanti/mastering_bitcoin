@@ -14,22 +14,22 @@ defmodule Chapter03Test do
     on_exit(fn -> Porcelain.shell("brew services stop bitcoin") end)
   end
 
-  setup(%{module: module}) do
+  setup %{mod: module} do
     result = capture_io(fn -> module.run() end)
     {:ok, [result: result]}
   end
 
-  @tag module: MasteringBitcoin.RPCExample
+  @tag mod: MasteringBitcoin.RPCExample
   test "Example 3-3", %{result: result} do
     assert result
   end
 
-  @tag module: MasteringBitcoin.RPCTransaction
+  @tag mod: MasteringBitcoin.RPCTransaction
   test "Example 3-4", %{result: result} do
     assert result
   end
 
-  @tag module: MasteringBitcoin.RPCBlock
+  @tag mod: MasteringBitcoin.RPCBlock
   test "Example 3-5", %{result: result} do
     assert result
   end

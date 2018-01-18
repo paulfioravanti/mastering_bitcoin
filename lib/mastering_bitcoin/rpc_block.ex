@@ -41,12 +41,12 @@ defmodule MasteringBitcoin.RPCBlock do
   # Alice's transaction was recorded. In that case, grab the latest block
   # available in your local node.
   defp get_blockhash_from_latest_block do
-    with {:ok, blockheight} <- RawProxy.getblockcount,
+    with {:ok, blockheight} <- RawProxy.getblockcount(),
          {:ok, blockhash} <- RawProxy.getblockhash(blockheight) do
       blockhash
     else
       {:error, reason} ->
-        IO.puts "Couldn't get a blockhash"
+        IO.puts("Couldn't get a blockhash")
         raise reason
     end
   end
