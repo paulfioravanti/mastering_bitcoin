@@ -5,8 +5,8 @@ defmodule MasteringBitcoin.Mixfile do
     [
       app: :mastering_bitcoin,
       deps: deps(),
-      elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      elixir: "~> 1.6",
+      start_permanent: Mix.env() == :prod,
       version: "0.1.0"
     ]
   end
