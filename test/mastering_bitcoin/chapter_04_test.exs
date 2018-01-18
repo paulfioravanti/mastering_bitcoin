@@ -15,19 +15,19 @@ defmodule Chapter04Test do
 
   @tag lang: :cpp
   describe "MasteringBitcoin.Addr.run()" do
+    @expected_output """
+    Public key: \
+    "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
+    Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
+    """
+
     setup do
       result = capture_io(fn -> MasteringBitcoin.Addr.run() end)
-      expected =
-        """
-        Public key: \
-        "0202a406624211f2abbdc68da3df929f938c3399dd79fac1b51b0e4ad1d26a47aa"
-        Address: "1PRTTaJesdNovgne6Ehcdu1fpEdX7913CK"
-        """
-      {:ok, [result: result, expected: expected]}
+      {:ok, [result: result]}
     end
 
-    test "Example 4-3", %{result: result, expected: expected} do
-      assert result == expected
+    test "Example 4-3", %{result: result} do
+      assert result == @expected_output
     end
   end
 
