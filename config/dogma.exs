@@ -7,7 +7,7 @@ config :dogma,
   # Pick paths not to lint
   exclude: [
     ~r(\A_build/),
-    ~r(\Adeps/),
+    ~r(\Adeps/)
   ],
   # Override an existing rule configuration
   override: []

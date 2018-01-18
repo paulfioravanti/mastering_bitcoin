@@ -38,14 +38,14 @@ config :mastering_bitcoin,
 
 config :porcelain, driver: Porcelain.Driver.Basic
 
-if Mix.env == :dev do
+if Mix.env() == :dev do
   # Configures automated testing/linting
   config :mix_test_watch,
-  clear: true,
-  tasks: [
-    # "compile.cure",
-    "dogma",
-    "credo --strict",
-    "test"
-  ]
+    clear: true,
+    tasks: [
+      # "compile.cure",
+      # "dogma", # Not currently working in Elixir 1.6.0
+      "credo --strict",
+      "test"
+    ]
 end
