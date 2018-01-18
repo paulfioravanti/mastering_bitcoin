@@ -44,6 +44,7 @@ if Mix.env() == :dev do
     clear: true,
     tasks: [
       # "compile.cure",
+      "format",
       # "dogma", # Not currently working in Elixir 1.6.0
       "credo --strict",
       "test"
