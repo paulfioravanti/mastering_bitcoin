@@ -68,6 +68,8 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
     end
   end
 
+  defguardp valid_key?(key) when key in 0..@n
+
   # Generate a random private key
   defp generate_private_key(pid) do
     with private_key <- random_key(pid),
@@ -145,6 +147,4 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
     |> Python.call(@python_file, "bitcoin.pubkey_to_address", [public_key])
     |> to_string()
   end
-
-  defguardp valid_key?(key) when key in 0..@n
 end

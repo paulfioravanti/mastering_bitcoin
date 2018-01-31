@@ -41,6 +41,9 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
     end)
   end
 
+  # check if this is a valid result, below the target
+  defguardp valid_nonce?(nonce) when nonce <= @max_nonce
+
   defp proof_of_work(nonce \\ @starting_nonce, header, difficulty_bits)
 
   defp proof_of_work(nonce, header, difficulty_bits)
@@ -88,7 +91,4 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
   end
 
   defp display_hashing_power(_elapsed_time, _nonce), do: nil
-
-  # check if this is a valid result, below the target
-  defguardp valid_nonce?(nonce) when nonce <= @max_nonce
 end
