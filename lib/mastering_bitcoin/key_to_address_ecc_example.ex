@@ -73,7 +73,7 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
     with private_key <- random_key(pid),
          decoded_private_key <- decode_private_key(pid, private_key) do
       case decoded_private_key do
-        n when n in 0..@n ->
+        n when valid_key?(n) ->
           [private_key, decoded_private_key]
 
         _out_of_range ->
@@ -145,4 +145,6 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
     |> Python.call(@python_file, "bitcoin.pubkey_to_address", [public_key])
     |> to_string()
   end
+
+  defguardp valid_key?(key) when key in 0..@n
 end

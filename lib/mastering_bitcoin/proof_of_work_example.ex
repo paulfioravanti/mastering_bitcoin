@@ -7,8 +7,8 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
 
   import MasteringBitcoin, only: [pow: 2]
 
-  # 4 billion
   @starting_nonce 0
+  # max nonce: 4 billion
   @max_nonce pow(2, 32)
   @test_block "test block with transactions"
   @nonce_increment 1
@@ -42,8 +42,9 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
   end
 
   defp proof_of_work(nonce \\ @starting_nonce, header, difficulty_bits)
-  # check if this is a valid result, below the target
-  defp proof_of_work(nonce, header, difficulty_bits) when nonce <= @max_nonce do
+
+  defp proof_of_work(nonce, header, difficulty_bits)
+       when valid_nonce?(nonce) do
     target = pow(2, 256 - difficulty_bits)
 
     hash_result =
@@ -87,4 +88,7 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
   end
 
   defp display_hashing_power(_elapsed_time, _nonce), do: nil
+
+  # check if this is a valid result, below the target
+  defguardp valid_nonce?(nonce) when nonce <= @max_nonce
 end

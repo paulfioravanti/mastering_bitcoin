@@ -40,11 +40,13 @@ defmodule MasteringBitcoin.Secp256k1 do
     |> Base.encode16(case: :lower)
   end
 
-  defp public_key_prefix(y) when (y &&& 1) == 1 do
+  defp public_key_prefix(y) when is_even?(y) do
     @greater_than_curve_midpoint
   end
 
   defp public_key_prefix(_y) do
     @less_than_curve_midpoint
   end
+
+  defguardp is_even?(y) when (y &&& 1) == 1
 end
