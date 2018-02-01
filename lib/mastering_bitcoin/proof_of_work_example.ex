@@ -13,6 +13,9 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
   @test_block "test block with transactions"
   @nonce_increment 1
 
+  # check if this is a valid result, below the target
+  defguardp valid_nonce?(nonce) when nonce <= @max_nonce
+
   def run(difficulty \\ 0..32) do
     # difficulty from 0 to 31 bits
     Enum.reduce(difficulty, "", fn difficulty_bits, previous_block_hash ->
@@ -40,9 +43,6 @@ defmodule MasteringBitcoin.ProofOfWorkExample do
       hash_result
     end)
   end
-
-  # check if this is a valid result, below the target
-  defguardp valid_nonce?(nonce) when nonce <= @max_nonce
 
   defp proof_of_work(nonce \\ @starting_nonce, header, difficulty_bits)
 

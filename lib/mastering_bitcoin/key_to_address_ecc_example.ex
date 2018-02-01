@@ -35,6 +35,8 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
   use Export.Python
   require Integer
 
+  defguardp valid_key?(key) when key in 0..@n
+
   def run do
     with {:ok, pid} <- Python.start(python_path: @python_src),
          [private_key, decoded_private_key] <- generate_private_key(pid),
@@ -67,8 +69,6 @@ defmodule MasteringBitcoin.KeyToAddressECCExample do
       Python.stop(pid)
     end
   end
-
-  defguardp valid_key?(key) when key in 0..@n
 
   # Generate a random private key
   defp generate_private_key(pid) do

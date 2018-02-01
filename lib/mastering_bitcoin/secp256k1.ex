@@ -15,6 +15,8 @@ defmodule MasteringBitcoin.Secp256k1 do
   @greater_than_curve_midpoint 0x03
   @less_than_curve_midpoint 0x02
 
+  defguardp is_even?(y) when (y &&& 1) == 1
+
   def bitcoin_public_key(private_key) do
     with {public_key, _private_key} <- public_key_from_private_key(private_key),
          ec_point <- ec_point_from_public_key(public_key),
@@ -39,8 +41,6 @@ defmodule MasteringBitcoin.Secp256k1 do
     <<public_key_prefix(y)::size(8), x::size(256)>>
     |> Base.encode16(case: :lower)
   end
-
-  defguardp is_even?(y) when (y &&& 1) == 1
 
   defp public_key_prefix(y) when is_even?(y) do
     @greater_than_curve_midpoint
