@@ -77,10 +77,12 @@ Install brew packages (includes the C++ libraries):
 brew install bitcoin libbitcoin-explorer gcc
 ```
 
-Install Python packages:
+Since Pybitcointools is not maintained any more, in order to get things working,
+the library has to be installed using `pip` at the specific commit hash before
+the entire repository was deleted:
 
 ```sh
-pip install bitcoin ecdsa
+pip install git+https://github.com/vbuterin/pybitcointools.git@aeb0a2bbb8bbfe421432d776c649650eaeb882a5
 ```
 
 The `bitcoin` package comes with a service that can start and stop the
