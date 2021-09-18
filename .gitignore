@@ -29,3 +29,6 @@ config/config.exs
 /priv/*
 /priv/__pycache__/
 !/priv/*.py
+
+# Ignore Mac OS files
+.DS_Store
