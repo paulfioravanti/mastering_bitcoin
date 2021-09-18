@@ -24,6 +24,14 @@ Bitcoin libraries has been left in the source files.
 API-like communication between Elixir and C++ is done using [Cure][],
 and [Export][] is used for communication between Elixir and Python.
 
+## Blog Posts
+
+More details about how I set all of this up and got Elixir communicating with
+Python and C++ can be found in the following blog posts I wrote:
+
+- [Using Python's Bitcoin libraries in Elixir][]
+- [Using C++ Bitcoin libraries in Elixir][]
+
 ## Setup
 
 ```sh
@@ -233,14 +241,9 @@ can be continuously run when file changes are made:
 mix test.watch
 ```
 
-## Helpful Resources
+## Other Helpful Resources
 
 - [Controlling a Bitcoin Node in Elixir][]
-- [Using Python's Bitcoin libraries in Elixir][]
-- [Using C++ Bitcoin libraries in Elixir][]
-
-The latter two are blog posts I wrote documenting the things I needed to do
-to get Elixir communicating with Python and C++.
 
 ## Social
 
